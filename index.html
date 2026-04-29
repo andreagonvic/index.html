@@ -460,7 +460,7 @@
 
     <div class="hero">
       <p class="hero-kicker">Sesión de diagnóstico</p>
-      <h1>¿Qué tipo de <em>innovador</em> es tu hospital?</h1>
+      <h1>¿A qué arquetipo de <em>innovación</em> corresponde tu hospital?</h1>
       <p>Esta encuesta de 5 preguntas nos ayudará a identificar el arquetipo de innovación de tu organización para personalizar la sesión de trabajo. No hay respuestas correctas ni incorrectas.</p>
     </div>
 
@@ -759,14 +759,13 @@
       <p id="res-desc"></p>
     </div>
 
-    <div class="archetype-grid" id="archetype-grid"></div>
+    <!-- <div class="archetype-grid" id="archetype-grid"></div> -->
 
     <hr class="divider">
     <div style="text-align:center">
-      <button class="btn btn-ghost" onclick="newResponse()" style="margin-right:12px">← Nueva respuesta</button>
-      <button class="btn btn-primary" onclick="showAdminPanel()">Ver panel de respuestas →</button>
+      <button class="btn btn-ghost" onclick="newResponse()">← Responder de nuevo</button>
     </div>
-    <p class="small-note">Tu respuesta ha sido guardada. El facilitador puede acceder al panel completo.</p>
+    <p class="small-note">Tu respuesta ha sido registrada correctamente.</p>
   </div>
 
   <!-- ───────────── ADMIN PANEL ───────────── -->
@@ -1080,16 +1079,6 @@ function exportCSV() {
 }
 
 // ─── INIT ─────────────────────────────────────────────────────────────────────
-// Show admin panel button at top if there are already responses
-if (responses.length > 0) {
-  // small floating badge
-  const fab = document.createElement('button');
-  fab.className = 'btn btn-ghost';
-  fab.style.cssText = 'position:fixed;bottom:24px;right:24px;z-index:100;font-size:.75rem;border-color:var(--accent2);color:var(--accent2);';
-  fab.textContent = '📊 Ver respuestas ('+responses.length+')';
-  fab.onclick = () => { showAdminPanel(); };
-  document.body.appendChild(fab);
-}
 </script>
 </body>
 </html>
