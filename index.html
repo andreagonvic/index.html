@@ -7,13 +7,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0a0f1e;
-    --surface: #111827;
-    --border: #45251e;
-    --accent: #FF8357;
+    --bg: #0a0608;
+    --surface: #130a0b;
+    --border: #2d1518;
+    --accent: #F48941;
     --accent2: #A50D00;
-    --text: #e8edf5;
-    --muted: #6b7a94;
+    --accent3: #480003;
+    --text: #f0e8e6;
+    --muted: #8a6f6a;
     --gold: #f5c842;
   }
 
@@ -36,7 +37,7 @@
     position: fixed;
     top: -40%; left: -20%;
     width: 80vw; height: 80vw;
-    background: radial-gradient(circle, rgba(0,212,170,0.05) 0%, transparent 65%);
+    background: radial-gradient(circle, rgba(244,137,65,0.06) 0%, transparent 65%);
     pointer-events: none;
   }
   body::after {
@@ -44,7 +45,7 @@
     position: fixed;
     bottom: -30%; right: -10%;
     width: 60vw; height: 60vw;
-    background: radial-gradient(circle, rgba(59,130,246,0.06) 0%, transparent 65%);
+    background: radial-gradient(circle, rgba(165,13,0,0.07) 0%, transparent 65%);
     pointer-events: none;
   }
 
@@ -55,7 +56,7 @@
     z-index: 1;
   }
 
-  /* HEADER 00d4aa*/
+  /* HEADER */
   .header {
     text-align: center;
     margin-bottom: 48px;
@@ -87,24 +88,12 @@
   }
 
   /* PROGRESS */
-  .progress-wrap {
-    margin-bottom: 36px;
-    animation: fadeUp 0.7s 0.1s ease both;
-  }
+  .progress-wrap { margin-bottom: 36px; animation: fadeUp 0.7s 0.1s ease both; }
   .progress-meta {
-    display: flex;
-    justify-content: space-between;
-    font-size: 12px;
-    color: var(--muted);
-    margin-bottom: 8px;
-    letter-spacing: 0.05em;
+    display: flex; justify-content: space-between;
+    font-size: 12px; color: var(--muted); margin-bottom: 8px; letter-spacing: 0.05em;
   }
-  .progress-bar {
-    height: 3px;
-    background: var(--border);
-    border-radius: 2px;
-    overflow: hidden;
-  }
+  .progress-bar { height: 3px; background: var(--border); border-radius: 2px; overflow: hidden; }
   .progress-fill {
     height: 100%;
     background: linear-gradient(90deg, var(--accent), var(--accent2));
@@ -125,46 +114,28 @@
   .card::before {
     content: '';
     position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
+    top: 0; left: 0; right: 0; height: 2px;
     background: linear-gradient(90deg, var(--accent), var(--accent2));
-    opacity: 0.6;
+    opacity: 0.7;
   }
 
   /* ID FIELDS */
   .id-title {
-    font-size: 11px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 24px;
-    font-weight: 500;
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 24px; font-weight: 500;
   }
-  .fields-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 18px;
-    margin-bottom: 32px;
-  }
+  .fields-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 32px; }
   @media(max-width:520px){ .fields-row { grid-template-columns: 1fr; } }
   label.field { display: flex; flex-direction: column; gap: 7px; }
   label.field span {
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--muted);
-    font-weight: 500;
+    font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--muted); font-weight: 500;
   }
   label.field input, label.field select {
     background: rgba(255,255,255,0.04);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 12px 14px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 14px;
-    color: var(--text);
-    transition: border-color .2s;
-    outline: none;
+    border: 1px solid var(--border); border-radius: 10px;
+    padding: 12px 14px; font-family: 'DM Sans', sans-serif;
+    font-size: 14px; color: var(--text); transition: border-color .2s; outline: none;
   }
   label.field input::placeholder { color: var(--muted); }
   label.field select option { background: var(--surface); color: var(--text); }
@@ -172,149 +143,179 @@
 
   /* QUESTION */
   .q-number {
-    font-size: 11px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 12px;
-    font-weight: 500;
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 12px; font-weight: 500;
   }
   .q-text {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(18px, 3vw, 24px);
-    font-weight: 700;
-    line-height: 1.35;
-    color: #fff;
-    margin-bottom: 32px;
+    font-size: clamp(18px, 3vw, 24px); font-weight: 700;
+    line-height: 1.35; color: #fff; margin-bottom: 10px;
+  }
+  .q-sub {
+    font-size: 13px; color: var(--muted); margin-bottom: 28px; line-height: 1.5;
   }
 
-  /* OPTIONS */
+  /* STANDARD OPTIONS */
   .options { display: flex; flex-direction: column; gap: 12px; }
   .option {
-    display: flex;
-    align-items: flex-start;
-    gap: 16px;
-    padding: 18px 20px;
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    cursor: pointer;
-    transition: all 0.22s ease;
-    background: transparent;
-    position: relative;
-    overflow: hidden;
+    display: flex; align-items: flex-start; gap: 16px;
+    padding: 18px 20px; border: 1px solid var(--border); border-radius: 12px;
+    cursor: pointer; transition: all 0.22s ease;
+    background: transparent; position: relative; overflow: hidden;
   }
   .option::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(120deg, rgba(255,131,87,0.06), rgba(59,130,246,0.06));
-    opacity: 0;
-    transition: opacity 0.22s;
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(120deg, rgba(244,137,65,0.07), rgba(165,13,0,0.07));
+    opacity: 0; transition: opacity 0.22s;
   }
-  .option:hover { border-color: rgba(0,212,170,0.4); }
+  .option:hover { border-color: rgba(244,137,65,0.5); }
   .option:hover::before { opacity: 1; }
-  .option.selected { border-color: var(--accent); background: rgba(0,212,170,0.07); }
+  .option.selected { border-color: var(--accent); background: rgba(244,137,65,0.08); }
   .option.selected::before { opacity: 1; }
   .opt-letter {
-    width: 28px; height: 28px;
-    border-radius: 50%;
+    width: 28px; height: 28px; border-radius: 50%;
     border: 1.5px solid var(--muted);
     display: flex; align-items: center; justify-content: center;
-    font-size: 11px; font-weight: 600; letter-spacing: 0.05em;
-    color: var(--muted);
-    flex-shrink: 0; margin-top: 1px;
-    transition: all 0.2s;
-    position: relative; z-index: 1;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.05em; color: var(--muted);
+    flex-shrink: 0; margin-top: 1px; transition: all 0.2s; position: relative; z-index: 1;
   }
-  .option.selected .opt-letter { border-color: var(--accent); background: var(--accent); color: #0a0f1e; }
+  .option.selected .opt-letter { border-color: var(--accent); background: var(--accent); color: #0a0608; }
   .opt-text { font-size: 14px; line-height: 1.55; color: var(--text); position: relative; z-index: 1; }
 
-  /* BUTTONS */
-  .btn-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 32px;
+  /* PRIORITY OPTIONS */
+  .priority-options { display: flex; flex-direction: column; gap: 10px; }
+  .priority-option {
+    display: flex; align-items: center; gap: 14px;
+    padding: 16px 20px; border: 1px solid var(--border); border-radius: 12px;
+    cursor: pointer; transition: all 0.22s ease;
+    background: transparent; position: relative; overflow: hidden; user-select: none;
   }
+  .priority-option::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(120deg, rgba(244,137,65,0.07), rgba(165,13,0,0.07));
+    opacity: 0; transition: opacity 0.22s;
+  }
+  .priority-option:hover { border-color: rgba(244,137,65,0.4); }
+  .priority-option:hover::before { opacity: 1; }
+  .priority-option.rank-1 { border-color: var(--accent); background: rgba(244,137,65,0.10); }
+  .priority-option.rank-2 { border-color: var(--accent2); background: rgba(165,13,0,0.10); }
+  .priority-option.rank-3 { border-color: #7a3000; background: rgba(120,48,0,0.10); }
+  .priority-option.rank-1::before, .priority-option.rank-2::before, .priority-option.rank-3::before { opacity: 1; }
+
+  .rank-badge {
+    width: 28px; height: 28px; border-radius: 50%;
+    border: 1.5px solid var(--muted);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; color: var(--muted);
+    flex-shrink: 0; transition: all 0.2s; position: relative; z-index: 1;
+    font-family: 'Playfair Display', serif;
+  }
+  .priority-option.rank-1 .rank-badge { border-color: var(--accent); background: var(--accent); color: #0a0608; }
+  .priority-option.rank-2 .rank-badge { border-color: var(--accent2); background: var(--accent2); color: #fff; }
+  .priority-option.rank-3 .rank-badge { border-color: #c05010; background: #7a3000; color: #ffd0a0; }
+
+  .priority-text { font-size: 14px; line-height: 1.5; color: var(--text); position: relative; z-index: 1; flex: 1; }
+  .priority-hint { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+  .rank-legend {
+    display: flex; gap: 16px; margin-bottom: 20px; flex-wrap: wrap;
+  }
+  .rank-legend-item {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 11px; color: var(--muted); letter-spacing: 0.04em;
+  }
+  .rank-dot {
+    width: 20px; height: 20px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; font-weight: 700; font-family: 'Playfair Display', serif;
+  }
+  .rank-dot.r1 { background: var(--accent); color: #0a0608; }
+  .rank-dot.r2 { background: var(--accent2); color: #fff; }
+  .rank-dot.r3 { background: #7a3000; color: #ffd0a0; }
+
+  /* BUTTONS */
+  .btn-row { display: flex; justify-content: space-between; align-items: center; margin-top: 32px; }
   .btn {
-    padding: 13px 32px;
-    border-radius: 10px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 14px; font-weight: 600;
-    cursor: pointer; letter-spacing: 0.03em;
+    padding: 13px 32px; border-radius: 10px; font-family: 'DM Sans', sans-serif;
+    font-size: 14px; font-weight: 600; cursor: pointer; letter-spacing: 0.03em;
     transition: all 0.2s; border: none;
   }
   .btn-primary {
     background: linear-gradient(135deg, var(--accent), var(--accent2));
-    color: #0a0f1e;
-    box-shadow: 0 4px 24px rgba(255,131,87,0.25);
+    color: #fff; box-shadow: 0 4px 24px rgba(244,137,65,0.25);
   }
   .btn-primary:disabled { opacity: 0.3; cursor: default; box-shadow: none; }
-  .btn-primary:not(:disabled):hover { transform: translateY(-1px); box-shadow: 0 6px 30px rgba(255,131,87,0.35); }
-  .btn-ghost {
-    background: transparent;
-    border: 1px solid var(--border);
-    color: var(--muted);
-  }
+  .btn-primary:not(:disabled):hover { transform: translateY(-1px); box-shadow: 0 6px 30px rgba(244,137,65,0.35); }
+  .btn-ghost { background: transparent; border: 1px solid var(--border); color: var(--muted); }
   .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
 
   /* RESULT */
   #result-screen { display: none; animation: fadeUp 0.7s ease both; }
   .result-badge {
-    display: inline-block;
-    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--accent);
-    border: 1px solid rgba(255,131,87,0.3);
-    padding: 5px 14px; border-radius: 100px;
-    margin-bottom: 20px; font-weight: 500;
+    display: inline-block; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--accent); border: 1px solid rgba(244,137,65,0.35);
+    padding: 5px 14px; border-radius: 100px; margin-bottom: 20px; font-weight: 500;
   }
   .result-title {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(26px, 4vw, 38px); font-weight: 900;
-    color: #fff; margin-bottom: 8px; line-height: 1.15;
+    font-size: clamp(26px, 4vw, 38px); font-weight: 900; color: #fff; margin-bottom: 8px; line-height: 1.15;
   }
-  .result-subtitle {
-    font-size: 13px; color: var(--accent);
-    font-style: italic; margin-bottom: 24px; font-weight: 300;
-  }
-  .result-desc {
-    font-size: 15px; line-height: 1.7;
-    color: #b0bac9; margin-bottom: 28px;
-  }
+  .result-subtitle { font-size: 13px; color: var(--accent); font-style: italic; margin-bottom: 24px; font-weight: 300; }
+  .result-desc { font-size: 15px; line-height: 1.7; color: #c8ada8; margin-bottom: 28px; }
+
   .pills { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
   .pill { font-size: 12px; padding: 5px 14px; border-radius: 100px; font-weight: 500; }
-  .pill.green { background: rgba(0,212,170,0.12); color: #00d4aa; border: 1px solid rgba(0,212,170,0.25); }
-  .pill.blue  { background: rgba(59,130,246,0.12); color: #93c5fd; border: 1px solid rgba(59,130,246,0.25); }
-  .pill.yellow{ background: rgba(245,200,66,0.12); color: var(--gold); border: 1px solid rgba(245,200,66,0.25); }
+  .pill.orange { background: rgba(244,137,65,0.12); color: var(--accent); border: 1px solid rgba(244,137,65,0.25); }
+  .pill.red    { background: rgba(165,13,0,0.15); color: #ff6b5b; border: 1px solid rgba(165,13,0,0.3); }
+  .pill.warm   { background: rgba(245,200,66,0.10); color: var(--gold); border: 1px solid rgba(245,200,66,0.2); }
 
-  .dims-row {
-    display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 28px;
-  }
+  .dims-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 28px; }
   @media(max-width:480px){ .dims-row { grid-template-columns: repeat(2,1fr); } }
   .dim-box {
-    background: rgba(255,255,255,0.025);
-    border: 1px solid var(--border); border-radius: 10px; padding: 14px; text-align: center;
+    background: rgba(255,255,255,0.025); border: 1px solid var(--border);
+    border-radius: 10px; padding: 14px; text-align: center;
   }
   .dim-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 6px; }
   .dim-val { font-size: 20px; font-weight: 700; font-family: 'Playfair Display', serif; }
   .dim-val.high { color: var(--accent); }
-  .dim-val.mid  { color: #93c5fd; }
+  .dim-val.mid  { color: #ff8c6b; }
   .dim-val.low  { color: #f87171; }
 
   .next-steps {
-    background: rgba(255,255,255,0.03);
-    border: 1px solid var(--border); border-radius: 14px; padding: 24px; margin-bottom: 28px;
+    background: rgba(255,255,255,0.025); border: 1px solid var(--border);
+    border-radius: 14px; padding: 24px; margin-bottom: 20px;
   }
   .next-steps h3 {
     font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
     color: var(--muted); margin-bottom: 14px; font-weight: 500;
   }
   .next-steps ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-  .next-steps li {
-    font-size: 13.5px; color: #9aa5b8;
-    padding-left: 18px; position: relative; line-height: 1.5;
-  }
+  .next-steps li { font-size: 13.5px; color: #b89d96; padding-left: 18px; position: relative; line-height: 1.5; }
   .next-steps li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-size: 12px; }
+
+  /* PRIORITIES IN RESULT */
+  .priorities-result {
+    background: rgba(244,137,65,0.05); border: 1px solid rgba(244,137,65,0.2);
+    border-radius: 14px; padding: 24px; margin-bottom: 28px;
+  }
+  .priorities-result h3 {
+    font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 16px; font-weight: 500;
+  }
+  .priority-list { display: flex; flex-direction: column; gap: 10px; }
+  .priority-item {
+    display: flex; align-items: center; gap: 12px;
+    font-size: 13.5px; color: #c8ada8;
+  }
+  .priority-item .p-num {
+    width: 24px; height: 24px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700; flex-shrink: 0;
+    font-family: 'Playfair Display', serif;
+  }
+  .priority-item:nth-child(1) .p-num { background: var(--accent); color: #0a0608; }
+  .priority-item:nth-child(2) .p-num { background: var(--accent2); color: #fff; }
+  .priority-item:nth-child(3) .p-num { background: #7a3000; color: #ffd0a0; }
 
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(18px); }
@@ -328,11 +329,10 @@
 
   <!-- SURVEY SCREEN -->
   <div id="survey-screen">
-
     <div class="header" id="main-header">
       <div class="eyebrow">Diagnóstico Estratégico</div>
       <h1>¿Qué arquetipo de<br><span>innovación</span> es tu hospital?</h1>
-      <p>5 preguntas · 3 minutos · Resultado inmediato</p>
+      <p>6 preguntas · 3 minutos · Resultado inmediato</p>
     </div>
 
     <div class="progress-wrap" id="progress-wrap">
@@ -347,18 +347,9 @@
     <div class="card" id="id-card">
       <div class="id-title">Antes de comenzar</div>
       <div class="fields-row">
-        <label class="field">
-          <span>Nombre</span>
-          <input type="text" id="f-nombre" placeholder="Tu nombre">
-        </label>
-        <label class="field">
-          <span>Hospital / Centro</span>
-          <input type="text" id="f-hospital" placeholder="Nombre del centro">
-        </label>
-        <label class="field">
-          <span>Cargo</span>
-          <input type="text" id="f-cargo" placeholder="CIO, Director de Innovación...">
-        </label>
+        <label class="field"><span>Nombre</span><input type="text" id="f-nombre" placeholder="Tu nombre"></label>
+        <label class="field"><span>Hospital / Centro</span><input type="text" id="f-hospital" placeholder="Nombre del centro"></label>
+        <label class="field"><span>Cargo</span><input type="text" id="f-cargo" placeholder="CIO, Director de Innovación..."></label>
         <label class="field">
           <span>Comunidad Autónoma</span>
           <select id="f-ccaa">
@@ -373,15 +364,11 @@
           </select>
         </label>
       </div>
-      <div class="btn-row">
-        <div></div>
-        <button class="btn btn-primary" onclick="startSurvey()">Comenzar →</button>
-      </div>
+      <div class="btn-row"><div></div><button class="btn btn-primary" onclick="startSurvey()">Comenzar →</button></div>
     </div>
 
-    <!-- QUESTIONS (rendered by JS) -->
+    <!-- QUESTIONS -->
     <div id="q-area"></div>
-
   </div>
 
   <!-- RESULT SCREEN -->
@@ -397,6 +384,10 @@
         <h3>Próximos pasos recomendados</h3>
         <ul id="res-steps"></ul>
       </div>
+      <div class="priorities-result" id="res-priorities" style="display:none">
+        <h3>Tus temáticas prioritarias para grupos de trabajo</h3>
+        <div class="priority-list" id="res-priority-list"></div>
+      </div>
       <button class="btn btn-ghost" onclick="resetSurvey()">← Volver a empezar</button>
     </div>
   </div>
@@ -404,6 +395,7 @@
 </div>
 
 <script>
+// ─── QUESTIONS ─────────────────────────────────────────────────────────────
 const QUESTIONS = [
   {
     text: "¿Cómo está estructurada la función de innovación en tu hospital?",
@@ -452,12 +444,23 @@ const QUESTIONS = [
   }
 ];
 
+// ─── WORKING GROUP TOPICS ───────────────────────────────────────────────────
+const TOPICS = [
+  "Modelos de adopción de la IA",
+  "Value Based Healthcare",
+  "PROMs and PREMs",
+  "Estrategia de gestión del dato",
+  "XXXX",
+  "YYYY"
+];
+
+// ─── ARCHETYPES ─────────────────────────────────────────────────────────────
 const ARCHETYPES = [
   {
     name: "El Hospital Fortaleza",
     tagline: '"Innovamos solos, desde dentro"',
     desc: "Tu hospital ha apostado por internalizar la innovación como capacidad propia. Tienes estructura, mandato y visión, y prefieres controlar el proceso antes que depender de actores externos. Generas innovaciones sólidas e incrementales, con rigor metodológico y alta identidad institucional.",
-    tags: [{ label:"CIO propio",type:"green"},{label:"Alta autonomía",type:"green"},{label:"Innovación incremental",type:"blue"},{label:"Control del proceso",type:"blue"}],
+    tags: [{label:"CIO propio",type:"orange"},{label:"Alta autonomía",type:"orange"},{label:"Innovación incremental",type:"red"},{label:"Control del proceso",type:"red"}],
     dims: [{label:"Estructura",value:"Alta",cls:"high"},{label:"Ecosistema",value:"Media",cls:"mid"},{label:"Velocidad",value:"Media",cls:"mid"}],
     steps: ["Abre canales selectivos con startups para acelerar la captación de ideas externas.","Diseña un proceso de fast-fail para validar hipótesis sin comprometer la calidad institucional.","Considera participar como socio ancla en una aceleradora sectorial para ampliar el radar de innovación."]
   },
@@ -465,7 +468,7 @@ const ARCHETYPES = [
     name: "El Hospital Hub",
     tagline: '"Somos el centro del ecosistema"',
     desc: "Tu hospital actúa como nodo estratégico de un ecosistema de innovación en salud. Atraes, validas y escalas soluciones de terceros, y tu nombre es sinónimo de credibilidad para startups e inversores. El CIO es un orquestador, no solo un gestor interno.",
-    tags: [{label:"Ecosistema activo",type:"green"},{label:"Aceleradora propia",type:"green"},{label:"Innovación disruptiva",type:"blue"},{label:"Alto volumen de iniciativas",type:"yellow"}],
+    tags: [{label:"Ecosistema activo",type:"orange"},{label:"Aceleradora propia",type:"orange"},{label:"Innovación disruptiva",type:"red"},{label:"Alto volumen de iniciativas",type:"warm"}],
     dims: [{label:"Estructura",value:"Alta",cls:"high"},{label:"Ecosistema",value:"Muy alta",cls:"high"},{label:"Velocidad",value:"Alta",cls:"high"}],
     steps: ["Formaliza criterios de selección y due diligence para gestionar el volumen de iniciativas sin saturarte.","Construye métricas de impacto clínico de las soluciones validadas para defender el ROI del modelo Hub.","Explora la creación de un fondo de inversión hospitalario para capturar valor a largo plazo."]
   },
@@ -473,7 +476,7 @@ const ARCHETYPES = [
     name: "El Hospital Explorador",
     tagline: '"Innovamos por proyectos, cuando surge la oportunidad"',
     desc: "Tienes talento clínico con inquietud innovadora y capacidad de respuesta ágil ante oportunidades concretas. La innovación existe, pero depende de personas clave y financiación externa. El reto es transformar esa energía en capacidad institucional sostenible.",
-    tags: [{label:"Clínico emprendedor",type:"green"},{label:"Agilidad táctica",type:"blue"},{label:"Proyectos ad hoc",type:"yellow"},{label:"Sin estructura formal",type:"yellow"}],
+    tags: [{label:"Clínico emprendedor",type:"orange"},{label:"Agilidad táctica",type:"red"},{label:"Proyectos ad hoc",type:"warm"},{label:"Sin estructura formal",type:"warm"}],
     dims: [{label:"Estructura",value:"Baja",cls:"low"},{label:"Ecosistema",value:"Puntual",cls:"mid"},{label:"Velocidad",value:"Variable",cls:"mid"}],
     steps: ["Crea una figura de coordinación de innovación, aunque sea a tiempo parcial, para generar memoria institucional.","Diseña un mapa de iniciativas activas y pasadas para identificar patrones y fortalezas propias.","Solicita fondos europeos (Horizon, FEDER) que justifiquen estructurar la función de innovación."]
   },
@@ -481,7 +484,7 @@ const ARCHETYPES = [
     name: "El Hospital Plataforma",
     tagline: '"La innovación es el modelo de negocio"',
     desc: "En tu hospital la innovación y la operación son la misma cosa. Tu arquitectura digital abierta te permite incorporar soluciones de terceros con mínima fricción. Eres un entorno de experimentación continua y un referente en salud digital.",
-    tags: [{label:"Digital-first",type:"green"},{label:"Interoperabilidad",type:"green"},{label:"Innovación continua",type:"blue"},{label:"Alianzas tecnológicas",type:"blue"}],
+    tags: [{label:"Digital-first",type:"orange"},{label:"Interoperabilidad",type:"orange"},{label:"Innovación continua",type:"red"},{label:"Alianzas tecnológicas",type:"red"}],
     dims: [{label:"Estructura",value:"Integrada",cls:"high"},{label:"Ecosistema",value:"Sistémica",cls:"high"},{label:"Velocidad",value:"Muy alta",cls:"high"}],
     steps: ["Asegura que la madurez clínica y regulatoria crece al mismo ritmo que la velocidad tecnológica.","Desarrolla un modelo de gobernanza de datos que aumente la confianza de pacientes y reguladores.","Exporta tu modelo y arquitectura a otros hospitales: convierte tu capacidad interna en producto externo."]
   },
@@ -489,16 +492,20 @@ const ARCHETYPES = [
     name: "El Hospital Durmiente",
     tagline: '"La innovación no está en nuestra agenda real"',
     desc: "La innovación es aún reactiva en tu organización: llega por presión normativa o por imitación. No es un juicio negativo — es el punto de partida más frecuente. Y precisamente por eso, el potencial de transformación es enorme con los pasos adecuados.",
-    tags: [{label:"Adopción tardía",type:"yellow"},{label:"Sin estructura propia",type:"yellow"},{label:"Alto potencial de mejora",type:"blue"}],
+    tags: [{label:"Adopción tardía",type:"warm"},{label:"Sin estructura propia",type:"warm"},{label:"Alto potencial de mejora",type:"red"}],
     dims: [{label:"Estructura",value:"Baja",cls:"low"},{label:"Ecosistema",value:"Baja",cls:"low"},{label:"Velocidad",value:"Baja",cls:"low"}],
     steps: ["Identifica un clínico o directivo con vocación innovadora: el catalizador siempre es una persona.","Empieza con un piloto pequeño y visible para generar un caso de éxito interno que cambie la narrativa.","Conecta con una red hospitalaria de innovación (SEIS, AQuAS, HIMSS) para aprender del camino de otros."]
   }
 ];
 
-let currentQ = 0;
+// ─── STATE ──────────────────────────────────────────────────────────────────
+const TOTAL_QUESTIONS = QUESTIONS.length + 1; // +1 for topics question
+let currentQ = 0; // 0..4 = archetype questions, 5 = topics
 let answers = Array(QUESTIONS.length).fill(null);
+let topicPriorities = []; // ordered array of up to 3 topic indices
 let userData = {};
 
+// ─── START ──────────────────────────────────────────────────────────────────
 function startSurvey() {
   const nombre = document.getElementById('f-nombre').value.trim();
   const hospital = document.getElementById('f-hospital').value.trim();
@@ -508,17 +515,28 @@ function startSurvey() {
   document.getElementById('main-header').style.display = 'none';
   currentQ = 0;
   answers = Array(QUESTIONS.length).fill(null);
+  topicPriorities = [];
   renderQuestion();
 }
 
+// ─── RENDER QUESTION ────────────────────────────────────────────────────────
 function renderQuestion() {
-  const q = QUESTIONS[currentQ];
-  const pct = Math.round((currentQ / QUESTIONS.length) * 100);
-  document.getElementById('prog-label').textContent = `Pregunta ${currentQ + 1} de ${QUESTIONS.length}`;
+  const pct = Math.round((currentQ / TOTAL_QUESTIONS) * 100);
+  document.getElementById('prog-label').textContent = `Pregunta ${currentQ + 1} de ${TOTAL_QUESTIONS}`;
   document.getElementById('prog-pct').textContent = pct + '%';
   document.getElementById('prog-fill').style.width = pct + '%';
+
+  if (currentQ < QUESTIONS.length) {
+    renderArchetypeQuestion();
+  } else {
+    renderTopicsQuestion();
+  }
+}
+
+function renderArchetypeQuestion() {
+  const q = QUESTIONS[currentQ];
   const letters = ['A','B','C','D'];
-  const isLast = currentQ === QUESTIONS.length - 1;
+  const isLastBeforeTopics = currentQ === QUESTIONS.length - 1;
   document.getElementById('q-area').innerHTML = `
     <div class="card">
       <div class="q-number">Pregunta ${currentQ + 1}</div>
@@ -533,12 +551,58 @@ function renderQuestion() {
       <div class="btn-row">
         <button class="btn btn-ghost" onclick="prevQ()">← Atrás</button>
         <button class="btn btn-primary" id="btn-next" onclick="nextQ()" ${answers[currentQ]===null?'disabled':''}>
-          ${isLast ? 'Ver mi arquetipo →' : 'Siguiente →'}
+          Siguiente →
         </button>
       </div>
     </div>`;
 }
 
+function renderTopicsQuestion() {
+  document.getElementById('q-area').innerHTML = `
+    <div class="card">
+      <div class="q-number">Pregunta ${TOTAL_QUESTIONS} de ${TOTAL_QUESTIONS}</div>
+      <div class="q-text">¿Qué temáticas te interesan para los grupos de trabajo?</div>
+      <div class="q-sub">Selecciona hasta 3 opciones por orden de prioridad. Haz clic una vez para marcar como primera prioridad, dos veces para segunda, tres veces para tercera. Haz clic de nuevo para desmarcar.</div>
+      <div class="rank-legend">
+        <div class="rank-legend-item"><div class="rank-dot r1">1</div> Primera prioridad</div>
+        <div class="rank-legend-item"><div class="rank-dot r2">2</div> Segunda prioridad</div>
+        <div class="rank-legend-item"><div class="rank-dot r3">3</div> Tercera prioridad</div>
+      </div>
+      <div class="priority-options">
+        ${TOPICS.map((t,i) => {
+          const rank = topicPriorities.indexOf(i);
+          const rankClass = rank === 0 ? 'rank-1' : rank === 1 ? 'rank-2' : rank === 2 ? 'rank-3' : '';
+          const rankLabel = rank >= 0 ? rank + 1 : '';
+          return `
+          <div class="priority-option ${rankClass}" id="topic-${i}" onclick="toggleTopic(${i})">
+            <div class="rank-badge">${rankLabel}</div>
+            <div class="priority-text">${t}</div>
+          </div>`;
+        }).join('')}
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-ghost" onclick="prevQ()">← Atrás</button>
+        <button class="btn btn-primary" id="btn-next-topics" onclick="submitSurvey()" ${topicPriorities.length === 0 ? 'disabled' : ''}>
+          Ver mi arquetipo →
+        </button>
+      </div>
+    </div>`;
+}
+
+// ─── TOPIC SELECTION ────────────────────────────────────────────────────────
+function toggleTopic(i) {
+  const idx = topicPriorities.indexOf(i);
+  if (idx >= 0) {
+    // already selected → remove
+    topicPriorities.splice(idx, 1);
+  } else if (topicPriorities.length < 3) {
+    // add if under 3
+    topicPriorities.push(i);
+  }
+  renderTopicsQuestion();
+}
+
+// ─── NAVIGATION ─────────────────────────────────────────────────────────────
 function selectOpt(i) {
   answers[currentQ] = i;
   document.querySelectorAll('.option').forEach((el,idx) => el.classList.toggle('selected', idx===i));
@@ -546,9 +610,9 @@ function selectOpt(i) {
 }
 
 function nextQ() {
-  if (answers[currentQ] === null) return;
-  if (currentQ < QUESTIONS.length - 1) { currentQ++; renderQuestion(); }
-  else submitSurvey();
+  if (currentQ < QUESTIONS.length && answers[currentQ] === null) return;
+  currentQ++;
+  renderQuestion();
 }
 
 function prevQ() {
@@ -559,9 +623,13 @@ function prevQ() {
     document.getElementById('prog-label').textContent = 'Identificación';
     document.getElementById('prog-pct').textContent = '0%';
     document.getElementById('prog-fill').style.width = '0%';
-  } else { currentQ--; renderQuestion(); }
+  } else {
+    currentQ--;
+    renderQuestion();
+  }
 }
 
+// ─── COMPUTE & SUBMIT ────────────────────────────────────────────────────────
 function computeScores() {
   const t = [0,0,0,0,0];
   for (let i = 0; i < QUESTIONS.length; i++) {
@@ -571,10 +639,13 @@ function computeScores() {
 }
 
 function submitSurvey() {
+  if (topicPriorities.length === 0) return;
   const scores = computeScores();
   const maxIdx = scores.indexOf(Math.max(...scores));
   const arch = ARCHETYPES[maxIdx];
   const fecha = new Date().toLocaleString('es-ES');
+  const topicsStr = topicPriorities.map((i,rank) => `${rank+1}º: ${TOPICS[i]}`).join(' | ');
+
   fetch('https://script.google.com/macros/s/AKfycbwEf7GzHOu-42IUVvZcFw0mtFM6JLszeGlW9rVlJsM2VJOuLxBAYE5dBKm4RznY0V7jHg/exec', {
     method: 'POST', mode: 'no-cors',
     headers: { 'Content-Type': 'application/json' },
@@ -586,34 +657,46 @@ function submitSurvey() {
       q3: answers[2]!==null ? String.fromCharCode(65+answers[2]) : '-',
       q4: answers[3]!==null ? String.fromCharCode(65+answers[3]) : '-',
       q5: answers[4]!==null ? String.fromCharCode(65+answers[4]) : '-',
+      tematicas: topicsStr,
     })
   }).catch(()=>{});
+
   showResult(arch);
 }
 
+// ─── SHOW RESULT ─────────────────────────────────────────────────────────────
 function showResult(arch) {
   document.getElementById('survey-screen').style.display = 'none';
   document.getElementById('progress-wrap').style.display = 'none';
   document.getElementById('result-screen').style.display = 'block';
+
   document.getElementById('res-title').textContent = arch.name;
   document.getElementById('res-subtitle').textContent = arch.tagline;
   document.getElementById('res-desc').textContent = arch.desc;
   document.getElementById('res-pills').innerHTML = arch.tags.map(t=>`<span class="pill ${t.type}">${t.label}</span>`).join('');
   document.getElementById('res-dims').innerHTML = arch.dims.map(d=>`<div class="dim-box"><div class="dim-label">${d.label}</div><div class="dim-val ${d.cls}">${d.value}</div></div>`).join('');
   document.getElementById('res-steps').innerHTML = arch.steps.map(s=>`<li>${s}</li>`).join('');
+
+  if (topicPriorities.length > 0) {
+    document.getElementById('res-priorities').style.display = 'block';
+    document.getElementById('res-priority-list').innerHTML = topicPriorities.map((i,rank) => `
+      <div class="priority-item">
+        <div class="p-num">${rank+1}</div>
+        <span>${TOPICS[i]}</span>
+      </div>`).join('');
+  }
 }
 
+// ─── RESET ───────────────────────────────────────────────────────────────────
 function resetSurvey() {
-  currentQ = 0; answers = Array(QUESTIONS.length).fill(null); userData = {};
+  currentQ = 0; answers = Array(QUESTIONS.length).fill(null); topicPriorities = []; userData = {};
   document.getElementById('result-screen').style.display = 'none';
   document.getElementById('survey-screen').style.display = 'block';
   document.getElementById('progress-wrap').style.display = 'block';
   document.getElementById('main-header').style.display = 'block';
   document.getElementById('id-card').style.display = 'block';
   document.getElementById('q-area').innerHTML = '';
-  document.getElementById('f-nombre').value = '';
-  document.getElementById('f-hospital').value = '';
-  document.getElementById('f-cargo').value = '';
+  ['f-nombre','f-hospital','f-cargo'].forEach(id => document.getElementById(id).value = '');
   document.getElementById('f-ccaa').value = '';
   document.getElementById('prog-label').textContent = 'Identificación';
   document.getElementById('prog-pct').textContent = '0%';
