@@ -62,6 +62,20 @@
     margin-bottom: 48px;
     animation: fadeUp 0.7s ease both;
   }
+  .hero-img-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: -8px;
+  }
+  .hero-img-wrap img {
+    width: 210px;
+    height: 210px;
+    object-fit: contain;
+    mix-blend-mode: screen;
+    filter: saturate(1.1) brightness(1.05);
+    pointer-events: none;
+    user-select: none;
+  }
   .eyebrow {
     font-size: 11px;
     letter-spacing: 0.25em;
@@ -330,9 +344,12 @@
   <!-- SURVEY SCREEN -->
   <div id="survey-screen">
     <div class="header" id="main-header">
+      <div class="hero-img-wrap">
+        <img src="hero.png" alt="">
+      </div>
       <div class="eyebrow">Diagnóstico Estratégico</div>
       <h1>¿Qué arquetipo de<br><span>innovación</span> es tu hospital?</h1>
-      <p>6 preguntas · 3 minutos · Resultado inmediato</p>
+      <p>8 preguntas · 4 minutos · Resultado inmediato</p>
     </div>
 
     <div class="progress-wrap" id="progress-wrap">
@@ -441,6 +458,24 @@ const QUESTIONS = [
       { text: "Convertir la tecnología en parte del ADN operativo del hospital, sin distinguir innovación de gestión.", scores: [0,1,0,4,0] },
       { text: "Mejorar continuamente a partir de lo que hacemos bien, con la innovación al servicio de los clínicos.", scores: [1,0,3,1,0] },
     ]
+  },
+  {
+    text: "¿Cómo se financia principalmente la innovación en tu hospital?",
+    options: [
+      { text: "Con presupuesto propio asignado específicamente a innovación.", scores: [4,1,0,2,0] },
+      { text: "A través de convocatorias externas: fondos europeos, nacionales o regionales.", scores: [0,1,4,0,0] },
+      { text: "Mediante alianzas y co-inversión con empresas, startups o universidades.", scores: [0,4,1,2,0] },
+      { text: "No hay financiación específica; se improvisa proyecto a proyecto.", scores: [0,0,1,0,4] },
+    ]
+  },
+  {
+    text: "¿Qué perfiles lideran o participan activamente en los proyectos de innovación?",
+    options: [
+      { text: "Principalmente perfiles de gestión y tecnología (gerencia, IT, dirección).", scores: [3,0,0,3,0] },
+      { text: "Clínicos inquietos que innovan por iniciativa propia, sin mandato institucional.", scores: [0,0,4,0,1] },
+      { text: "Equipos mixtos clínico-técnicos con roles definidos y metodología compartida.", scores: [3,2,1,2,0] },
+      { text: "Un ecosistema amplio: clínicos, gestores, pacientes, externos y startups co-diseñan juntos.", scores: [0,4,0,3,0] },
+    ]
   }
 ];
 
@@ -457,7 +492,7 @@ const TOPICS = [
 // ─── ARCHETYPES ─────────────────────────────────────────────────────────────
 const ARCHETYPES = [
   {
-    name: "El Hospital Fortaleza",
+    name: "El Hospital Laboratorio",
     tagline: '"Innovamos solos, desde dentro"',
     desc: "Tu hospital ha apostado por internalizar la innovación como capacidad propia. Tienes estructura, mandato y visión, y prefieres controlar el proceso antes que depender de actores externos. Generas innovaciones sólidas e incrementales, con rigor metodológico y alta identidad institucional.",
     tags: [{label:"CIO propio",type:"orange"},{label:"Alta autonomía",type:"orange"},{label:"Innovación incremental",type:"red"},{label:"Control del proceso",type:"red"}],
@@ -500,7 +535,7 @@ const ARCHETYPES = [
 
 // ─── STATE ──────────────────────────────────────────────────────────────────
 const TOTAL_QUESTIONS = QUESTIONS.length + 1; // +1 for topics question
-let currentQ = 0; // 0..4 = archetype questions, 5 = topics
+let currentQ = 0; // 0..6 = archetype questions, 7 = topics
 let answers = Array(QUESTIONS.length).fill(null);
 let topicPriorities = []; // ordered array of up to 3 topic indices
 let userData = {};
@@ -561,8 +596,8 @@ function renderTopicsQuestion() {
   document.getElementById('q-area').innerHTML = `
     <div class="card">
       <div class="q-number">Pregunta ${TOTAL_QUESTIONS} de ${TOTAL_QUESTIONS}</div>
-      <div class="q-text">¿A qué grupo de trabajo te gustaría pertenecer según temática?</div>
-      <div class="q-sub">Selecciona hasta 3 opciones por orden de prioridad. Haz clic una vez para marcar la primera prioridad, el segundo click te marcará la segunda, y el tercer click la tercera. Haz clic de nuevo sobre ellas para desmarcarlas.</div>
+      <div class="q-text">¿Qué temáticas te interesan para los grupos de trabajo?</div>
+      <div class="q-sub">Selecciona hasta 3 opciones por orden de prioridad. Haz clic una vez para marcar como primera prioridad, dos veces para segunda, tres veces para tercera. Haz clic de nuevo para desmarcar.</div>
       <div class="rank-legend">
         <div class="rank-legend-item"><div class="rank-dot r1">1</div> Primera prioridad</div>
         <div class="rank-legend-item"><div class="rank-dot r2">2</div> Segunda prioridad</div>
@@ -657,6 +692,8 @@ function submitSurvey() {
       q3: answers[2]!==null ? String.fromCharCode(65+answers[2]) : '-',
       q4: answers[3]!==null ? String.fromCharCode(65+answers[3]) : '-',
       q5: answers[4]!==null ? String.fromCharCode(65+answers[4]) : '-',
+      q6: answers[5]!==null ? String.fromCharCode(65+answers[5]) : '-',
+      q7: answers[6]!==null ? String.fromCharCode(65+answers[6]) : '-',
       tematicas: topicsStr,
     })
   }).catch(()=>{});
