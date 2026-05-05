@@ -419,7 +419,7 @@ const QUESTIONS = [
     options: [
       { text: "Tenemos una Dirección de Innovación (CIO) con equipo y presupuesto propios.", scores: [3,2,0,1,0] },
       { text: "La innovación recae en clínicos o equipos motivados, sin estructura formal.", scores: [0,0,3,0,1] },
-      { text: "Existe un área transversal de innovación conectada con el ecosistema externo.", scores: [1,3,0,1,0] },
+      { text: "Existe un área transversal de innovación, con conexión al ecosistema externo y capacidad de coordinación interna.", scores: [1,3,0,1,0] },
       { text: "No existe una función de innovación definida como tal.", scores: [0,0,0,0,4] },
     ]
   },
@@ -428,7 +428,7 @@ const QUESTIONS = [
     options: [
       { text: "Desde dentro: los profesionales detectan una necesidad y la desarrollamos internamente.", scores: [4,1,1,0,0] },
       { text: "Desde fuera: startups y empresas nos proponen soluciones que evaluamos y pilotamos.", scores: [0,3,0,2,1] },
-      { text: "Por proyectos puntuales ligados a convocatorias, congresos o colaboraciones concretas.", scores: [0,0,4,0,1] },
+      { text: "Por proyectos puntuales ligados a convocatorias, congresos o colaboraciones coyunturales.", scores: [0,0,4,0,1] },
       { text: "La innovación llega principalmente por presión regulatoria o por imitación de otros centros.", scores: [0,0,0,0,5] },
     ]
   },
@@ -437,7 +437,7 @@ const QUESTIONS = [
     options: [
       { text: "Somos un nodo activo: participamos en aceleradoras, eventos y alianzas de forma sistemática.", scores: [0,4,0,2,0] },
       { text: "Colaboramos de forma selectiva, priorizando proyectos que controlamos o lideramos nosotros.", scores: [4,1,0,0,0] },
-      { text: "Nuestra arquitectura tecnológica está abierta: cualquier solución puede integrarse con facilidad.", scores: [0,1,0,4,0] },
+      { text: "Facilitamos activamente la colaboración gracias a una arquitectura tecnológica abierta que permite integrar soluciones externas con rapidez.", scores: [0,1,0,4,0] },
       { text: "La relación es puntual o casi inexistente.", scores: [0,0,2,0,3] },
     ]
   },
@@ -464,7 +464,7 @@ const QUESTIONS = [
     options: [
       { text: "Con presupuesto propio asignado específicamente a innovación.", scores: [4,1,0,2,0] },
       { text: "A través de convocatorias externas: fondos europeos, nacionales o regionales.", scores: [0,1,4,0,0] },
-      { text: "Mediante alianzas y co-inversión con empresas, startups o universidades.", scores: [0,4,1,2,0] },
+      { text: "Mediante alianzas y co-inversión con empresas, startups o universidades compartiendo riesgo y retorno.", scores: [0,4,1,2,0] },
       { text: "No hay financiación específica; se improvisa proyecto a proyecto.", scores: [0,0,1,0,4] },
     ]
   },
@@ -481,19 +481,17 @@ const QUESTIONS = [
 
 // ─── WORKING GROUP TOPICS ───────────────────────────────────────────────────
 const TOPICS = [
+  "VBHC: PROMs y PREMs",
   "Modelos de adopción de la IA",
-  "Value Based Healthcare",
-  "PROMs and PREMs",
-  "Estrategia de gestión del dato",
-  "XXXX",
-  "YYYY"
+  "VBHC: Atención descentralizada",
+  "Ecosistemas de innovación"
 ];
 
 // ─── ARCHETYPES ─────────────────────────────────────────────────────────────
 const ARCHETYPES = [
   {
     name: "El Hospital Laboratorio",
-    tagline: '"Innovamos solos, desde dentro"',
+    tagline: '"Innovamos principalmente desde dentro"',
     desc: "Tu hospital ha apostado por internalizar la innovación como capacidad propia. Tienes estructura, mandato y visión, y prefieres controlar el proceso antes que depender de actores externos. Generas innovaciones sólidas e incrementales, con rigor metodológico y alta identidad institucional.",
     tags: [{label:"CIO propio",type:"orange"},{label:"Alta autonomía",type:"orange"},{label:"Innovación incremental",type:"red"},{label:"Control del proceso",type:"red"}],
     dims: [{label:"Estructura",value:"Alta",cls:"high"},{label:"Ecosistema",value:"Media",cls:"mid"},{label:"Velocidad",value:"Media",cls:"mid"}],
@@ -524,9 +522,9 @@ const ARCHETYPES = [
     steps: ["Asegura que la madurez clínica y regulatoria crece al mismo ritmo que la velocidad tecnológica.","Desarrolla un modelo de gobernanza de datos que aumente la confianza de pacientes y reguladores.","Exporta tu modelo y arquitectura a otros hospitales: convierte tu capacidad interna en producto externo."]
   },
   {
-    name: "El Hospital Durmiente",
-    tagline: '"La innovación no está en nuestra agenda real"',
-    desc: "La innovación es aún reactiva en tu organización: llega por presión normativa o por imitación. No es un juicio negativo — es el punto de partida más frecuente. Y precisamente por eso, el potencial de transformación es enorme con los pasos adecuados.",
+    name: "El Hospital Reactivo",
+    tagline: '"La innovación nesponde más que lidera"',
+    desc: "La innovación en tu organización es principalmente reactiva: llega impulsada por requerimientos normativos o por la adopción de iniciativas probadas en otros centros. No se trata de una falta de capacidad, sino de un enfoque comprensible en entornos altamente regulados y con restricciones estructurales. Y precisamente por eso, el potencial de transformación es enorme con los pasos adecuados.",
     tags: [{label:"Adopción tardía",type:"warm"},{label:"Sin estructura propia",type:"warm"},{label:"Alto potencial de mejora",type:"red"}],
     dims: [{label:"Estructura",value:"Baja",cls:"low"},{label:"Ecosistema",value:"Baja",cls:"low"},{label:"Velocidad",value:"Baja",cls:"low"}],
     steps: ["Identifica un clínico o directivo con vocación innovadora: el catalizador siempre es una persona.","Empieza con un piloto pequeño y visible para generar un caso de éxito interno que cambie la narrativa.","Conecta con una red hospitalaria de innovación (SEIS, AQuAS, HIMSS) para aprender del camino de otros."]
@@ -597,7 +595,7 @@ function renderTopicsQuestion() {
     <div class="card">
       <div class="q-number">Pregunta ${TOTAL_QUESTIONS} de ${TOTAL_QUESTIONS}</div>
       <div class="q-text">¿Qué temáticas te interesan para los grupos de trabajo?</div>
-      <div class="q-sub">Selecciona hasta 3 opciones por orden de prioridad. Haz clic una vez para marcar como primera prioridad, dos veces para segunda, tres veces para tercera. Haz clic de nuevo para desmarcar.</div>
+      <div class="q-sub">Selecciona entre 1 y 3 opciones por orden de prioridad. Haz clic una vez para marcar como primera prioridad, un segundo clic para la segunda, y un tercer clic para la tercera. Haz clic de nuevo sobre una opción para desmarcarla.</div>
       <div class="rank-legend">
         <div class="rank-legend-item"><div class="rank-dot r1">1</div> Primera prioridad</div>
         <div class="rank-legend-item"><div class="rank-dot r2">2</div> Segunda prioridad</div>
