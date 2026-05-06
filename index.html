@@ -138,8 +138,7 @@
     font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
     color: var(--accent); margin-bottom: 24px; font-weight: 500;
   }
-  .fields-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 32px; }
-  @media(max-width:520px){ .fields-row { grid-template-columns: 1fr; } }
+  .fields-col { display: flex; flex-direction: column; gap: 18px; margin-bottom: 32px; }
   label.field { display: flex; flex-direction: column; gap: 7px; }
   label.field span {
     font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
@@ -229,11 +228,8 @@
   .priority-option.rank-3 .rank-badge { border-color: #c05010; background: #7a3000; color: #ffd0a0; }
 
   .priority-text { font-size: 14px; line-height: 1.5; color: var(--text); position: relative; z-index: 1; flex: 1; }
-  .priority-hint { font-size: 11px; color: var(--muted); margin-top: 2px; }
 
-  .rank-legend {
-    display: flex; gap: 16px; margin-bottom: 20px; flex-wrap: wrap;
-  }
+  .rank-legend { display: flex; gap: 16px; margin-bottom: 20px; flex-wrap: wrap; }
   .rank-legend-item {
     display: flex; align-items: center; gap: 6px;
     font-size: 11px; color: var(--muted); letter-spacing: 0.04em;
@@ -295,19 +291,6 @@
   .dim-val.mid  { color: #ff8c6b; }
   .dim-val.low  { color: #f87171; }
 
-  /*.next-steps {
-    background: rgba(255,255,255,0.025); border: 1px solid var(--border);
-    border-radius: 14px; padding: 24px; margin-bottom: 20px;
-  }
-  .next-steps h3 {
-    font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
-    color: var(--muted); margin-bottom: 14px; font-weight: 500;
-  }
-  .next-steps ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-  .next-steps li { font-size: 13.5px; color: #b89d96; padding-left: 18px; position: relative; line-height: 1.5; }
-  .next-steps li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-size: 12px; }*/
-
-  /* PRIORITIES IN RESULT */
   .priorities-result {
     background: rgba(244,137,65,0.05); border: 1px solid rgba(244,137,65,0.2);
     border-radius: 14px; padding: 24px; margin-bottom: 28px;
@@ -363,22 +346,32 @@
     <!-- IDENTIFICATION -->
     <div class="card" id="id-card">
       <div class="id-title">Antes de comenzar</div>
-      <div class="fields-row">
-        <label class="field"><span>Nombre</span><input type="text" id="f-nombre" placeholder="Tu nombre"></label>
-        <label class="field"><span>Hospital / Centro</span><input type="text" id="f-hospital" placeholder="Nombre del centro"></label>
-        <label class="field"><span>Cargo</span><input type="text" id="f-cargo" placeholder="CIO, Director de Innovación..."></label>
+      <div class="fields-col">
         <label class="field">
-          <span>Comunidad Autónoma</span>
-          <select id="f-ccaa">
-            <option value="">Selecciona...</option>
-            <option>Andalucía</option><option>Aragón</option><option>Asturias</option>
-            <option>Baleares</option><option>Canarias</option><option>Cantabria</option>
-            <option>Castilla-La Mancha</option><option>Castilla y León</option>
-            <option>Cataluña</option><option>Ceuta</option><option>Extremadura</option>
-            <option>Galicia</option><option>La Rioja</option><option>Madrid</option>
-            <option>Melilla</option><option>Murcia</option><option>Navarra</option>
-            <option>País Vasco</option><option>Valencia</option>
+          <span>Hospital / Centro</span>
+          <select id="f-hospital">
+            <option value="">Selecciona tu hospital...</option>
+            <option>Hospital Univ. Virgen Macarena</option>
+            <option>Hospital Univ. Vall d'Hebron</option>
+            <option>Hospital Univ. Virgen del Rocío</option>
+            <option>Hospital Univ. y Politécnico La Fe</option>
+            <option>Hospital Univ. La Paz</option>
+            <option>Hospital Univ. De Santiago de Compostela</option>
+            <option>Hospital Sant Joan de Deu</option>
+            <option>Hospital Clínic de Barcelona</option>
+            <option>Hospital General Univ. Dr. Balmis</option>
+            <option>Hospital Clínico San Carlos</option>
+            <option>Hospital Son Espases</option>
+            <option>Clínica Universidad de Navarra</option>
+            <option>Hospital de la Santa Creu i Sant Pau</option>
+            <option>Hospital Univ. La Princesa</option>
+            <option>Hospital Universitario 12 de Octubre</option>
+            <option>Hospital Virgen del Rocío</option>
           </select>
+        </label>
+        <label class="field">
+          <span>Cargo</span>
+          <input type="text" id="f-cargo" placeholder="CIO, Director de Innovación...">
         </label>
       </div>
       <div class="btn-row"><div></div><button class="btn btn-primary" onclick="startSurvey()">Comenzar →</button></div>
@@ -397,10 +390,6 @@
       <div class="result-desc" id="res-desc"></div>
       <div class="pills" id="res-pills"></div>
       <div class="dims-row" id="res-dims"></div>
-      <!--<div class="next-steps">
-        <h3>Próximos pasos recomendados</h3>
-        <ul id="res-steps"></ul>
-      </div>-->
       <div class="priorities-result" id="res-priorities" style="display:none">
         <h3>Tus temáticas prioritarias para grupos de trabajo</h3>
         <div class="priority-list" id="res-priority-list"></div>
@@ -495,7 +484,6 @@ const ARCHETYPES = [
     desc: "Tu hospital ha apostado por internalizar la innovación como capacidad propia. Tienes estructura, mandato y visión, y prefieres controlar el proceso antes que depender de actores externos. Generas innovaciones sólidas e incrementales, con rigor metodológico y alta identidad institucional.",
     tags: [{label:"CIO propio",type:"orange"},{label:"Alta autonomía",type:"orange"},{label:"Innovación incremental",type:"red"},{label:"Control del proceso",type:"red"}],
     dims: [{label:"Estructura",value:"Alta",cls:"high"},{label:"Ecosistema",value:"Media",cls:"mid"},{label:"Velocidad",value:"Media",cls:"mid"}],
-    //steps: ["Abre canales selectivos con startups para acelerar la captación de ideas externas.","Diseña un proceso de fast-fail para validar hipótesis sin comprometer la calidad institucional.","Considera participar como socio ancla en una aceleradora sectorial para ampliar el radar de innovación."]
   },
   {
     name: "El Hospital Hub",
@@ -503,7 +491,6 @@ const ARCHETYPES = [
     desc: "Tu hospital actúa como nodo estratégico de un ecosistema de innovación en salud. Atraes, validas y escalas soluciones de terceros, y tu nombre es sinónimo de credibilidad para startups e inversores. El CIO es un orquestador, no solo un gestor interno.",
     tags: [{label:"Ecosistema activo",type:"orange"},{label:"Aceleradora propia",type:"orange"},{label:"Innovación disruptiva",type:"red"},{label:"Alto volumen de iniciativas",type:"warm"}],
     dims: [{label:"Estructura",value:"Alta",cls:"high"},{label:"Ecosistema",value:"Muy alta",cls:"high"},{label:"Velocidad",value:"Alta",cls:"high"}],
-    //steps: ["Formaliza criterios de selección y due diligence para gestionar el volumen de iniciativas sin saturarte.","Construye métricas de impacto clínico de las soluciones validadas para defender el ROI del modelo Hub.","Explora la creación de un fondo de inversión hospitalario para capturar valor a largo plazo."]
   },
   {
     name: "El Hospital Explorador",
@@ -511,7 +498,6 @@ const ARCHETYPES = [
     desc: "Tienes talento clínico con inquietud innovadora y capacidad de respuesta ágil ante oportunidades concretas. La innovación existe, pero depende de personas clave y financiación externa. El reto es transformar esa energía en capacidad institucional sostenible.",
     tags: [{label:"Clínico emprendedor",type:"orange"},{label:"Agilidad táctica",type:"red"},{label:"Proyectos ad hoc",type:"warm"},{label:"Sin estructura formal",type:"warm"}],
     dims: [{label:"Estructura",value:"Baja",cls:"low"},{label:"Ecosistema",value:"Puntual",cls:"mid"},{label:"Velocidad",value:"Variable",cls:"mid"}],
-    //steps: ["Crea una figura de coordinación de innovación, aunque sea a tiempo parcial, para generar memoria institucional.","Diseña un mapa de iniciativas activas y pasadas para identificar patrones y fortalezas propias.","Solicita fondos europeos (Horizon, FEDER) que justifiquen estructurar la función de innovación."]
   },
   {
     name: "El Hospital Plataforma",
@@ -519,7 +505,6 @@ const ARCHETYPES = [
     desc: "En tu hospital la innovación y la operación son la misma cosa. Tu arquitectura digital abierta te permite incorporar soluciones de terceros con mínima fricción. Eres un entorno de experimentación continua y un referente en salud digital.",
     tags: [{label:"Digital-first",type:"orange"},{label:"Interoperabilidad",type:"orange"},{label:"Innovación continua",type:"red"},{label:"Alianzas tecnológicas",type:"red"}],
     dims: [{label:"Estructura",value:"Integrada",cls:"high"},{label:"Ecosistema",value:"Sistémica",cls:"high"},{label:"Velocidad",value:"Muy alta",cls:"high"}],
-    //steps: ["Asegura que la madurez clínica y regulatoria crece al mismo ritmo que la velocidad tecnológica.","Desarrolla un modelo de gobernanza de datos que aumente la confianza de pacientes y reguladores.","Exporta tu modelo y arquitectura a otros hospitales: convierte tu capacidad interna en producto externo."]
   },
   {
     name: "El Hospital Reactivo",
@@ -527,23 +512,24 @@ const ARCHETYPES = [
     desc: "La innovación en tu organización es principalmente reactiva: llega impulsada por requerimientos normativos o por la adopción de iniciativas probadas en otros centros. No se trata de una falta de capacidad, sino de un enfoque comprensible en entornos altamente regulados y con restricciones estructurales. Y precisamente por eso, el potencial de transformación es enorme con los pasos adecuados.",
     tags: [{label:"Adopción tardía",type:"warm"},{label:"Sin estructura propia",type:"warm"},{label:"Alto potencial de mejora",type:"red"}],
     dims: [{label:"Estructura",value:"Baja",cls:"low"},{label:"Ecosistema",value:"Baja",cls:"low"},{label:"Velocidad",value:"Baja",cls:"low"}],
-    //steps: ["Identifica un clínico o directivo con vocación innovadora: el catalizador siempre es una persona.","Empieza con un piloto pequeño y visible para generar un caso de éxito interno que cambie la narrativa.","Conecta con una red hospitalaria de innovación (SEIS, AQuAS, HIMSS) para aprender del camino de otros."]
   }
 ];
 
 // ─── STATE ──────────────────────────────────────────────────────────────────
 const TOTAL_QUESTIONS = QUESTIONS.length + 1; // +1 for topics question
-let currentQ = 0; // 0..6 = archetype questions, 7 = topics
+let currentQ = 0;
 let answers = Array(QUESTIONS.length).fill(null);
-let topicPriorities = []; // ordered array of up to 3 topic indices
+let topicPriorities = [];
 let userData = {};
 
 // ─── START ──────────────────────────────────────────────────────────────────
 function startSurvey() {
-  const nombre = document.getElementById('f-nombre').value.trim();
-  const hospital = document.getElementById('f-hospital').value.trim();
-  if (!nombre || !hospital) { alert('Por favor, indica tu nombre y hospital antes de continuar.'); return; }
-  userData = { nombre, hospital, cargo: document.getElementById('f-cargo').value.trim(), ccaa: document.getElementById('f-ccaa').value };
+  const hospital = document.getElementById('f-hospital').value;
+  if (!hospital) { alert('Por favor, selecciona tu hospital antes de continuar.'); return; }
+  userData = {
+    hospital,
+    cargo: document.getElementById('f-cargo').value.trim(),
+  };
   document.getElementById('id-card').style.display = 'none';
   document.getElementById('main-header').style.display = 'none';
   currentQ = 0;
@@ -569,7 +555,6 @@ function renderQuestion() {
 function renderArchetypeQuestion() {
   const q = QUESTIONS[currentQ];
   const letters = ['A','B','C','D'];
-  const isLastBeforeTopics = currentQ === QUESTIONS.length - 1;
   document.getElementById('q-area').innerHTML = `
     <div class="card">
       <div class="q-number">Pregunta ${currentQ + 1}</div>
@@ -626,10 +611,8 @@ function renderTopicsQuestion() {
 function toggleTopic(i) {
   const idx = topicPriorities.indexOf(i);
   if (idx >= 0) {
-    // already selected → remove
     topicPriorities.splice(idx, 1);
   } else if (topicPriorities.length < 3) {
-    // add if under 3
     topicPriorities.push(i);
   }
   renderTopicsQuestion();
@@ -683,8 +666,10 @@ function submitSurvey() {
     method: 'POST', mode: 'no-cors',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      fecha, nombre: userData.nombre, hospital: userData.hospital,
-      cargo: userData.cargo, ccaa: userData.ccaa, archetype: arch.name,
+      fecha,
+      hospital: userData.hospital,
+      cargo: userData.cargo,
+      archetype: arch.name,
       q1: answers[0]!==null ? String.fromCharCode(65+answers[0]) : '-',
       q2: answers[1]!==null ? String.fromCharCode(65+answers[1]) : '-',
       q3: answers[2]!==null ? String.fromCharCode(65+answers[2]) : '-',
@@ -710,7 +695,6 @@ function showResult(arch) {
   document.getElementById('res-desc').textContent = arch.desc;
   document.getElementById('res-pills').innerHTML = arch.tags.map(t=>`<span class="pill ${t.type}">${t.label}</span>`).join('');
   document.getElementById('res-dims').innerHTML = arch.dims.map(d=>`<div class="dim-box"><div class="dim-label">${d.label}</div><div class="dim-val ${d.cls}">${d.value}</div></div>`).join('');
-  //document.getElementById('res-steps').innerHTML = arch.steps.map(s=>`<li>${s}</li>`).join('');
 
   if (topicPriorities.length > 0) {
     document.getElementById('res-priorities').style.display = 'block';
@@ -731,8 +715,8 @@ function resetSurvey() {
   document.getElementById('main-header').style.display = 'block';
   document.getElementById('id-card').style.display = 'block';
   document.getElementById('q-area').innerHTML = '';
-  ['f-nombre','f-hospital','f-cargo'].forEach(id => document.getElementById(id).value = '');
-  document.getElementById('f-ccaa').value = '';
+  document.getElementById('f-hospital').value = '';
+  document.getElementById('f-cargo').value = '';
   document.getElementById('prog-label').textContent = 'Identificación';
   document.getElementById('prog-pct').textContent = '0%';
   document.getElementById('prog-fill').style.width = '0%';
