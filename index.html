@@ -403,28 +403,13 @@ const QUESTIONS = [
   // ── BLOQUE 2: CULTURA (siempre visibles, renumeradas) ────────────────────
   // P2 — cultura + identidad en una sola página (siempre)
   {
-    id:'p2cult', label:'Pregunta 2', type:'double',
-    questions: [
-      {
-        id:'p1f',
-        text:'¿Qué acciones tiene el hospital para difundir la cultura de innovación internamente?',
-        options:[
+    id:'p1f', label:'Pregunta 2', type:'single',
+    text:'¿Qué acciones tiene el hospital para difundir la cultura de innovación internamente?',
+    options:[
           {text:'No hay iniciativas específicas para fomentar una cultura innovadora.', scores:[0,0,0,0,4]},
           {text:'Acciones puntuales: alguna jornada o formación esporádica.', scores:[1,0,2,0,2]},
           {text:'Programa estructurado de formación e ideación para todos los niveles.', scores:[3,2,1,2,0]},
           {text:'La cultura innovadora es parte explícita de la identidad y onboarding del hospital.', scores:[2,4,0,3,0]},
-        ]
-      },
-      {
-        id:'p1g',
-        text:'¿Cómo describirías la identidad innovadora de tu organización?',
-        options:[
-          {text:'La innovación no forma parte de cómo nos definimos como hospital.', scores:[0,0,0,0,4]},
-          {text:'Hay voluntad innovadora en algunos equipos pero no es transversal.', scores:[1,0,3,0,1]},
-          {text:'Existe una narrativa institucional de innovación reconocida interna y externamente.', scores:[3,2,0,2,0]},
-          {text:'Somos referente en innovación: eso atrae talento, proyectos y alianzas.', scores:[1,4,0,2,0]},
-        ]
-      }
     ]
   },
   // ── BLOQUE 3: ORIGEN Y ECOSISTEMA ────────────────────────────────────────
@@ -850,7 +835,7 @@ function submitSurvey() {
     p1c:  answers.p1c !== undefined ? ['A','B','C'][answers.p1c]     : '-',
     p1d:  answers.p1d ? answers.p1d.map(i=>'ABCDEF'[i]).join('+')   : '-',
     p1f:  answers.p1f !== undefined ? ['A','B','C','D'][answers.p1f] : '-',
-    p1g:  answers.p1g !== undefined ? ['A','B','C','D'][answers.p1g] : '-',
+    //p1g:  answers.p1g !== undefined ? ['A','B','C','D'][answers.p1g] : '-',
     p3:   answers.p3  !== undefined ? ['A','B','C','D','E'][answers.p3] : '-',
     p4:   answers.p4  !== undefined ? ['A','B','C'][answers.p4]      : '-',
     p4b:  answers.p4b ? answers.p4b.map(i=>'ABCDE'[i]).join('+')    : '-',
