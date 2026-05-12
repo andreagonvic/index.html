@@ -174,7 +174,14 @@
   .dim-val.high { color:var(--accent); }
   .dim-val.mid  { color:#ff8c6b; }
   .dim-val.low  { color:#f87171; }
-  .priorities-result { background:rgba(244,137,65,.05); border:1px solid rgba(244,137,65,.2); border-radius:14px; padding:22px; margin-bottom:26px; }
+  .gap-block { background:rgba(244,137,65,.05); border:1px solid rgba(244,137,65,.2); border-radius:14px; padding:22px; margin-bottom:26px; }
+  .gap-block h3 { font-size:11px; letter-spacing:.15em; text-transform:uppercase; color:var(--accent); margin-bottom:16px; font-weight:500; }
+  .gap-row { display:grid; grid-template-columns:1fr 40px 1fr; align-items:center; gap:8px; }
+  .gap-cell { background:rgba(255,255,255,.04); border:1px solid var(--border); border-radius:10px; padding:12px 14px; }
+  .gap-cell-label { font-size:9px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-bottom:4px; }
+  .gap-cell-val { font-size:13px; color:var(--text); font-weight:500; line-height:1.3; }
+  .gap-arrow { text-align:center; font-size:20px; color:var(--accent); }
+  .gap-desc { margin-top:12px; font-size:12px; color:var(--muted); line-height:1.6; font-style:italic; }
   .priorities-result h3 { font-size:11px; letter-spacing:.15em; text-transform:uppercase; color:var(--accent); margin-bottom:14px; font-weight:500; }
   .priority-list { display:flex; flex-direction:column; gap:10px; }
   .priority-item { display:flex; align-items:center; gap:12px; font-size:13.5px; color:#c8ada8; }
@@ -243,6 +250,44 @@
       <div class="result-desc" id="res-desc"></div>
       <div class="pills" id="res-pills"></div>
       <div class="dims-row" id="res-dims"></div>
+      <!-- GAP DE MADUREZ — MEJORA 1 -->
+      <div id="res-gap" style="display:none;background:rgba(244,137,65,0.05);border:1px solid rgba(244,137,65,0.2);border-radius:14px;padding:22px;margin-bottom:22px;">
+        <div style="font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;font-weight:500;">Gap de madurez estratégica</div>
+        <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center;margin-bottom:14px;">
+          <div style="background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;padding:12px;text-align:center;">
+            <div style="font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:6px;">Hoy</div>
+            <div id="gap-hoy" style="font-size:15px;font-weight:600;color:var(--text);font-family:'Playfair Display',serif;"></div>
+          </div>
+          <div style="color:var(--accent);font-size:20px;">→</div>
+          <div style="background:rgba(244,137,65,.08);border:1px solid rgba(244,137,65,.3);border-radius:10px;padding:12px;text-align:center;">
+            <div style="font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:6px;">En 3 años</div>
+            <div id="gap-futuro" style="font-size:15px;font-weight:600;color:var(--accent);font-family:'Playfair Display',serif;"></div>
+          </div>
+        </div>
+        <div id="gap-desc" style="font-size:13px;color:#c8ada8;line-height:1.6;"></div>
+      </div>
+      <!-- ARQUETIPO SECUNDARIO — MEJORA 2 -->
+      <div id="res-secondary" style="display:none;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:22px;">
+        <div style="font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;font-weight:500;">También con rasgos de</div>
+        <div id="res-secondary-name" style="font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--text);margin-bottom:6px;"></div>
+        <div id="res-secondary-desc" style="font-size:13px;color:var(--muted);line-height:1.6;"></div>
+      </div>
+      <!-- Gap de madurez - MEJORA 1 -->
+      <div class="gap-block" id="res-gap" style="display:none">
+        <h3>Gap de madurez estratégica</h3>
+        <div class="gap-row">
+          <div class="gap-cell">
+            <div class="gap-cell-label">Situación actual</div>
+            <div class="gap-cell-val" id="gap-hoy"></div>
+          </div>
+          <div class="gap-arrow">→</div>
+          <div class="gap-cell">
+            <div class="gap-cell-label">Aspiración a 3 años</div>
+            <div class="gap-cell-val" id="gap-futuro"></div>
+          </div>
+        </div>
+        <div class="gap-desc" id="gap-desc"></div>
+      </div>
       <div class="priorities-result" id="res-priorities" style="display:none">
         <h3>Tus temáticas prioritarias para grupos de trabajo</h3>
         <div class="priority-list" id="res-priority-list"></div>
@@ -260,13 +305,13 @@ const ARCHETYPES = [
     name:"El Hospital Laboratorio", tagline:'"Innovamos principalmente desde dentro"',
     desc:"Tu hospital ha apostado por internalizar la innovación como capacidad propia. Tienes estructura, mandato y visión, y prefieres controlar el proceso antes que depender de actores externos. Generas innovaciones sólidas e incrementales, con rigor metodológico y alta identidad institucional.",
     tags:[{label:"Dirección propia",type:"orange"},{label:"Alta autonomía",type:"orange"},{label:"Innovación incremental",type:"red"},{label:"Control del proceso",type:"red"}],
-    dims:[{label:"Estructura",value:"Alta",cls:"high"},{label:"Ecosistema",value:"Media",cls:"mid"},{label:"Velocidad",value:"Media",cls:"mid"}]
+    dims:[{label:"Estructura",value:"Alta",cls:"high"},{label:"Ecosistema",value:"Medio",cls:"mid"},{label:"Velocidad",value:"Media",cls:"mid"}]
   },
   {
     name:"El Hospital Hub", tagline:'"Somos el centro del ecosistema"',
     desc:"Tu hospital actúa como nodo estratégico de un ecosistema de innovación en salud. Atraes, validas y escalas soluciones de terceros, y tu nombre es sinónimo de credibilidad para startups e inversores. El director de innovación es un orquestador, no solo un gestor interno.",
     tags:[{label:"Ecosistema activo",type:"orange"},{label:"Co-creación",type:"orange"},{label:"Innovación disruptiva",type:"red"},{label:"Alto volumen",type:"warm"}],
-    dims:[{label:"Estructura",value:"Alta",cls:"high"},{label:"Ecosistema",value:"Muy alta",cls:"high"},{label:"Velocidad",value:"Alta",cls:"high"}]
+    dims:[{label:"Estructura",value:"Alta",cls:"high"},{label:"Ecosistema",value:"Muy alto",cls:"high"},{label:"Velocidad",value:"Alta",cls:"high"}]
   },
   {
     name:"El Hospital Explorador", tagline:'"Innovamos por proyectos, cuando surge la oportunidad"',
@@ -278,13 +323,13 @@ const ARCHETYPES = [
     name:"El Hospital Plataforma", tagline:'"La innovación es el modelo de negocio"',
     desc:"En tu hospital la innovación y la operación son la misma cosa. Tu arquitectura digital abierta te permite incorporar soluciones de terceros con mínima fricción. Eres un entorno de experimentación continua y un referente en salud digital.",
     tags:[{label:"Digital-first",type:"orange"},{label:"Interoperabilidad",type:"orange"},{label:"Innovación continua",type:"red"},{label:"Alianzas tecnológicas",type:"red"}],
-    dims:[{label:"Estructura",value:"Integrada",cls:"high"},{label:"Ecosistema",value:"Sistémica",cls:"high"},{label:"Velocidad",value:"Muy alta",cls:"high"}]
+    dims:[{label:"Estructura",value:"Integrada",cls:"high"},{label:"Ecosistema",value:"Sistémico",cls:"high"},{label:"Velocidad",value:"Muy alta",cls:"high"}]
   },
   {
     name:"El Hospital Reactivo", tagline:'"La innovación responde más que lidera"',
     desc:"La innovación en tu organización es principalmente reactiva: llega impulsada por requerimientos normativos o por la adopción de iniciativas probadas en otros centros. No se trata de una falta de capacidad, sino de un enfoque comprensible en entornos altamente regulados. El potencial de transformación es enorme con los pasos adecuados.",
     tags:[{label:"Adopción tardía",type:"warm"},{label:"Sin estructura propia",type:"warm"},{label:"Alto potencial",type:"red"}],
-    dims:[{label:"Estructura",value:"Baja",cls:"low"},{label:"Ecosistema",value:"Baja",cls:"low"},{label:"Velocidad",value:"Baja",cls:"low"}]
+    dims:[{label:"Estructura",value:"Baja",cls:"low"},{label:"Ecosistema",value:"Bajo",cls:"low"},{label:"Velocidad",value:"Baja",cls:"low"}]
   }
 ];
 
@@ -302,44 +347,47 @@ const TOPICS = [
 // scoring: single adds scores[selectedIndex], multi adds sum of selected / numSelected * weight
 
 const QUESTIONS = [
-  // P1 — estructura
+  // ── BLOQUE 1: ESTRUCTURA ──────────────────────────────────────────────────
+  // P1 — estructura (MECE rewritten)
   {
     id:'p1', label:'Pregunta 1', type:'single',
     text:'¿Cómo está estructurada la función de innovación en tu hospital?',
     options:[
-      {text:'Tenemos una Dirección de Innovación con equipo dedicado.', scores:[4,2,0,1,0]},
-      {text:'La innovación recae en clínicos o equipos motivados, sin estructura formal.', scores:[0,0,4,0,1]},
-      {text:'Existe un área transversal de coordinación de innovación, conectada al ecosistema externo.', scores:[1,4,0,2,0]},
+      {text:'Tenemos una Dirección de Innovación con equipo dedicado y mandato institucional explícito.', scores:[4,2,0,1,0]},
+      {text:'La innovación recae en clínicos o equipos motivados, sin estructura ni mandato formal.', scores:[0,0,4,0,1]},
+      {text:'Existe un área de coordinación transversal que articula proyectos internos y relaciones con el ecosistema, sin ser una dirección propia.', scores:[1,4,0,2,0]},
       {text:'No existe una función de innovación definida como tal.', scores:[0,0,0,0,5]},
     ]
   },
-  // P1b — reporting (solo si P1 ≠ D)
+  // P1bc — reporting + comité en una sola página (solo si P1 ≠ D)
   {
-    id:'p1b', label:'Pregunta 1b', type:'single',
+    id:'p1bc', label:'Pregunta 1b', type:'double',
     showIf: a => a.p1 !== undefined && a.p1 !== 3,
-    text:'¿A quién reporta la función de innovación?',
-    sub:'Solo informativo — no afecta al cálculo del arquetipo.',
-    options:[
-      {text:'A Gerencia / Dirección General', scores:[2,2,1,2,0]},
-      {text:'A una Dirección asistencial o médica', scores:[2,0,2,1,0]},
-      {text:'A una Dirección de Operaciones o Sistemas', scores:[1,1,0,3,0]},
-      {text:'No reporta formalmente a ninguna dirección', scores:[0,0,2,0,2]},
-    ]
-  },
-  // P1c — comité (solo si P1 ≠ D)
-  {
-    id:'p1c', label:'Pregunta 1c', type:'single',
-    showIf: a => a.p1 !== undefined && a.p1 !== 3,
-    text:'¿Existe un comité o espacio de gobernanza de innovación?',
-    options:[
-      {text:'Sí, con reuniones periódicas y participación de dirección.', scores:[3,3,0,2,0]},
-      {text:'Sí, pero se reúne de forma irregular.', scores:[1,1,2,1,0]},
-      {text:'No existe formalmente.', scores:[0,0,2,0,3]},
+    questions: [
+      {
+        id:'p1b',
+        text:'¿A quién reporta la función de innovación?',
+        options:[
+          {text:'A Gerencia / Dirección General', scores:[2,2,1,2,0]},
+          {text:'A una Dirección asistencial o médica', scores:[2,0,2,1,0]},
+          {text:'A una Dirección de Operaciones o Sistemas', scores:[1,1,0,3,0]},
+          {text:'No reporta formalmente a ninguna dirección', scores:[0,0,2,0,2]},
+        ]
+      },
+      {
+        id:'p1c',
+        text:'¿Existe un comité o espacio de gobernanza de innovación?',
+        options:[
+          {text:'Sí, con reuniones periódicas y participación de dirección.', scores:[3,3,0,2,0]},
+          {text:'Sí, pero se reúne de forma irregular.', scores:[1,1,2,1,0]},
+          {text:'No existe formalmente.', scores:[0,0,2,0,3]},
+        ]
+      }
     ]
   },
   // P1d — perfiles equipo (solo si P1 ≠ D)
   {
-    id:'p1d', label:'Pregunta 1d', type:'multi',
+    id:'p1d', label:'Pregunta 1c', type:'multi',
     showIf: a => a.p1 !== undefined && a.p1 !== 3,
     text:'¿Qué perfiles forman parte del equipo o función de innovación?',
     sub:'Selecciona todos los que apliquen.',
@@ -352,20 +400,49 @@ const QUESTIONS = [
       {text:'No hay perfiles específicos asignados', scores:[0,0,2,0,3]},
     ]
   },
-  // P2 — origen iniciativas
+  // ── BLOQUE 2: CULTURA (siempre visibles, renumeradas) ────────────────────
+  // P2 — cultura + identidad en una sola página (siempre)
   {
-    id:'p2', label:'Pregunta 2', type:'single',
+    id:'p2cult', label:'Pregunta 2', type:'double',
+    questions: [
+      {
+        id:'p1f',
+        text:'¿Qué acciones tiene el hospital para difundir la cultura de innovación internamente?',
+        options:[
+          {text:'No hay iniciativas específicas para fomentar una cultura innovadora.', scores:[0,0,0,0,4]},
+          {text:'Acciones puntuales: alguna jornada o formación esporádica.', scores:[1,0,2,0,2]},
+          {text:'Programa estructurado de formación e ideación para todos los niveles.', scores:[3,2,1,2,0]},
+          {text:'La cultura innovadora es parte explícita de la identidad y onboarding del hospital.', scores:[2,4,0,3,0]},
+        ]
+      },
+      {
+        id:'p1g',
+        text:'¿Cómo describirías la identidad innovadora de tu organización?',
+        options:[
+          {text:'La innovación no forma parte de cómo nos definimos como hospital.', scores:[0,0,0,0,4]},
+          {text:'Hay voluntad innovadora en algunos equipos pero no es transversal.', scores:[1,0,3,0,1]},
+          {text:'Existe una narrativa institucional de innovación reconocida interna y externamente.', scores:[3,2,0,2,0]},
+          {text:'Somos referente en innovación: eso atrae talento, proyectos y alianzas.', scores:[1,4,0,2,0]},
+        ]
+      }
+    ]
+  },
+  // ── BLOQUE 3: ORIGEN Y ECOSISTEMA ────────────────────────────────────────
+  // P3 — origen iniciativas (5 opciones)
+  {
+    id:'p3', label:'Pregunta 3', type:'single',
     text:'¿Cómo se originan habitualmente las iniciativas innovadoras en tu hospital?',
     options:[
       {text:'Principalmente desde dentro: los profesionales detectan necesidades y las desarrollamos internamente.', scores:[4,1,1,1,0]},
       {text:'Principalmente desde fuera: startups y empresas nos proponen soluciones que evaluamos y pilotamos.', scores:[0,3,0,2,1]},
+      {text:'Por proyectos puntuales ligados a convocatorias, congresos o colaboraciones coyunturales.', scores:[0,1,4,0,1]},
       {text:'De forma mixta: impulsamos innovación desde dentro y captamos desde fuera de forma simultánea.', scores:[2,3,1,2,0]},
       {text:'La innovación llega principalmente por presión regulatoria o imitación de otros centros.', scores:[0,0,0,0,5]},
     ]
   },
-  // P3 — relación ecosistema
+  // P4 — relación ecosistema
   {
-    id:'p3', label:'Pregunta 3', type:'single',
+    id:'p4', label:'Pregunta 4', type:'single',
     text:'¿Cuál es vuestra relación con el ecosistema de innovación en salud (startups, universidades, fondos…)?',
     options:[
       {text:'Proactiva y sistemática: co-creamos, pilotamos y escalamos con actores externos de forma continua.', scores:[0,4,0,3,0]},
@@ -373,10 +450,10 @@ const QUESTIONS = [
       {text:'Reactiva o casi inexistente: participamos cuando nos lo proponen o no tenemos relación establecida.', scores:[0,0,1,0,4]},
     ]
   },
-  // P3b — fórmulas relación (solo si P3 ≠ C)
+  // P4b — fórmulas relación (solo si P4 ≠ C)
   {
-    id:'p3b', label:'Pregunta 3b', type:'multi',
-    showIf: a => a.p3 !== undefined && a.p3 !== 2,
+    id:'p4b', label:'Pregunta 4b', type:'multi',
+    showIf: a => a.p4 !== undefined && a.p4 !== 2,
     text:'¿Qué fórmulas de colaboración utilizáis con el ecosistema externo?',
     sub:'Selecciona todas las que apliquen.',
     items:[
@@ -387,53 +464,73 @@ const QUESTIONS = [
       {text:'Co-inversión / compartir riesgo y retorno', scores:[0,4,0,2,0]},
     ]
   },
-  // P4 — fracaso
-  {
-    id:'p4', label:'Pregunta 4', type:'single',
-    text:'Cuando una iniciativa innovadora no funciona como se esperaba, ¿qué ocurre en tu organización?',
-    options:[
-      {text:'Se analiza en detalle y se aprende, pero generamos fricción interna al asumir el fracaso.', scores:[3,1,0,0,1]},
-      {text:'Es parte del proceso: fallamos rápido, aprendemos y pivotamos sin drama.', scores:[1,3,1,3,0]},
-      {text:'Suele abandonarse discretamente; hay poca cultura de documentar o aprender del fracaso.', scores:[0,0,3,0,2]},
-      {text:'Prácticamente no experimentamos, así que rara vez afrontamos este escenario.', scores:[0,0,0,0,4]},
+  // ── BLOQUE 4: APRENDIZAJE Y ESCALADO ─────────────────────────────────────
+  // P5 — fracaso
+    {
+    id:'p5', label:'Pregunta 5', type:'double',
+    questions: [
+      {
+        id:'p5',
+        text:'Cuando una iniciativa innovadora no funciona como se esperaba, ¿qué ocurre en tu organización?',
+        options:[
+          {text:'Se analiza en detalle y se aprende, pero generamos fricción interna al asumir el fracaso.', scores:[3,1,0,0,1]},
+          {text:'Es parte del proceso: fallamos rápido, aprendemos y pivotamos sin drama.', scores:[1,3,1,3,0]},
+          {text:'Suele abandonarse discretamente; hay poca cultura de documentar o aprender del fracaso.', scores:[0,0,3,0,2]},
+          {text:'Prácticamente no experimentamos, así que rara vez afrontamos este escenario.', scores:[0,0,0,0,4]},
+        ]
+      },
+      {
+        id:'p5b',
+        text:'Y cuando una iniciativa funciona, ¿qué ocurre habitualmente con el piloto?',
+        options:[
+          {text:'Suele quedarse como piloto; escalar es muy difícil en nuestra organización.', scores:[0,0,1,0,3]},
+          {text:'Depende del empuje personal del responsable del proyecto.', scores:[1,0,3,0,1]},
+          {text:'Existe un proceso de evaluación para decidir si se escala institucionalmente.', scores:[3,2,0,2,0]},
+          {text:'Se escala sistemáticamente y se replica en otros servicios o centros.', scores:[1,4,0,3,0]},
+        ]
+      }
     ]
   },
-  // P4b — escalado
+  // ── BLOQUE 5: ESTRATEGIA ──────────────────────────────────────────────────
+  // P6 — motor de la innovación (NUEVA)
   {
-    id:'p4b', label:'Pregunta 4b', type:'single',
-    text:'Y cuando una iniciativa funciona, ¿qué ocurre habitualmente con el piloto?',
+    id:'p6', label:'Pregunta 6', type:'single',
+    text:'¿Cuál es el principal motor de la innovación en tu hospital?',
     options:[
-      {text:'Suele quedarse como piloto; escalar es muy difícil en nuestra organización.', scores:[0,0,1,0,3]},
-      {text:'Depende del empuje personal del responsable del proyecto.', scores:[1,0,3,0,1]},
-      {text:'Existe un proceso de evaluación para decidir si se escala institucionalmente.', scores:[3,2,0,2,0]},
-      {text:'Se escala sistemáticamente y se replica en otros servicios o centros.', scores:[1,4,0,3,0]},
+      {text:'Mejorar la experiencia y los resultados del paciente como eje central.', scores:[2,2,1,0,0]},
+      {text:'Empoderar al profesional clínico: innovar para que trabaje mejor, con más autonomía y menos fricción.', scores:[3,0,2,1,0]},
+      {text:'Optimizar la operativa y la eficiencia del hospital como organización.', scores:[2,0,0,4,0]},
+      {text:'Innovar forma parte de nuestra identidad institucional: lo hacemos porque es parte de lo que somos.', scores:[1,4,0,1,0]},
     ]
   },
-  // P4c — cultura innovación
+  // P7 — peso estratégico HOY
   {
-    id:'p4c', label:'Pregunta 4c', type:'single',
-    text:'¿Cómo se trabaja la cultura de innovación internamente en tu hospital?',
+    id:'p7', label:'Pregunta 7', type:'single',
+    text:'¿Qué peso tiene la innovación en la estrategia global del hospital HOY?',
+    sub:'Valora la situación actual, no la aspiración.',
     options:[
-      {text:'No hay iniciativas específicas para fomentar una cultura innovadora.', scores:[0,0,0,0,4]},
-      {text:'Acciones puntuales: alguna jornada o formación esporádica.', scores:[1,0,2,0,2]},
-      {text:'Programa estructurado de formación e ideación para todos los niveles.', scores:[3,2,1,2,0]},
-      {text:'La cultura innovadora es parte explícita de la identidad y onboarding del hospital.', scores:[2,4,0,3,0]},
+      {text:'Marginal — iniciativas aisladas sin respaldo estratégico explícito.', scores:[0,0,1,0,4]},
+      {text:'Línea secundaria — con cierto reconocimiento pero sin prioridad real.', scores:[1,0,2,1,1]},
+      {text:'Prioridad estratégica definida — con objetivos y recursos asignados.', scores:[3,2,1,3,0]},
+      {text:'Elemento central — la innovación define el posicionamiento del hospital.', scores:[2,4,0,2,0]},
     ]
   },
-  // P5 — peso estratégico
+  // P7b — aspiración 3 años
   {
-    id:'p5', label:'Pregunta 5', type:'single',
-    text:'¿Qué peso tiene la innovación en la estrategia global del hospital?',
+    id:'p7b', label:'Pregunta 7b', type:'single',
+    text:'¿Y dónde aspira a estar vuestra organización en los próximos 3 años?',
+    sub:'Valora la aspiración, independientemente de la situación actual.',
     options:[
-      {text:'Marginal / iniciativas aisladas sin respaldo estratégico.', scores:[0,0,1,0,4]},
-      {text:'Línea secundaria con cierto reconocimiento institucional.', scores:[1,0,2,1,1]},
-      {text:'Prioridad estratégica definida con objetivos y recursos asignados.', scores:[3,2,1,3,0]},
-      {text:'Elemento central del posicionamiento del hospital como organización.', scores:[2,4,0,2,0]},
+      {text:'Mantener el nivel actual — la innovación no es una prioridad de transformación.', scores:[0,0,1,0,3]},
+      {text:'Ganar relevancia interna — que la innovación tenga mayor reconocimiento institucional.', scores:[2,0,2,1,0]},
+      {text:'Ser referente en innovación — dentro del sistema sanitario nacional.', scores:[3,2,0,1,0]},
+      {text:'Liderar el ecosistema — posicionarnos como nodo central de innovación en salud.', scores:[1,4,0,2,0]},
     ]
   },
-  // P6 — financiación (multi)
+  // ── BLOQUE 6: FINANCIACIÓN E IMPACTO ─────────────────────────────────────
+  // P8 — financiación (multi)
   {
-    id:'p6', label:'Pregunta 6', type:'multi',
+    id:'p8', label:'Pregunta 8', type:'multi',
     text:'¿Cómo se financia principalmente la innovación en tu hospital?',
     sub:'Selecciona todas las fuentes que apliquen.',
     items:[
@@ -444,9 +541,9 @@ const QUESTIONS = [
       {text:'Sin financiación específica; se improvisa proyecto a proyecto.', scores:[0,0,1,0,4]},
     ]
   },
-  // P6b — medición impacto
+  // P8b — medición impacto
   {
-    id:'p6b', label:'Pregunta 6b', type:'single',
+    id:'p8b', label:'Pregunta 9', type:'single',
     text:'¿Cómo medís el impacto de la innovación en vuestro hospital?',
     options:[
       {text:'No medimos de forma sistemática.', scores:[0,0,1,0,4]},
@@ -455,9 +552,10 @@ const QUESTIONS = [
       {text:'Modelo estructurado: VBHC, ROI, escalabilidad e impacto organizativo.', scores:[2,4,0,3,0]},
     ]
   },
-  // P7 — perfiles proyectos
+  // ── BLOQUE 7: PERFILES Y BARRERAS ────────────────────────────────────────
+  // P9 — perfiles proyectos
   {
-    id:'p7', label:'Pregunta 7', type:'single',
+    id:'p9', label:'Pregunta 10', type:'single',
     text:'¿Qué perfiles lideran o participan activamente en los proyectos de innovación?',
     options:[
       {text:'Principalmente perfiles de gestión y tecnología (gerencia, IT, dirección).', scores:[3,0,0,3,0]},
@@ -466,9 +564,24 @@ const QUESTIONS = [
       {text:'Un ecosistema amplio: clínicos, gestores, pacientes, externos y startups co-diseñan juntos.', scores:[0,4,0,3,0]},
     ]
   },
-  // P8 — temáticas (topics)
+  // P9b — barreras (multi, informativa)
   {
-    id:'p8', label:'Pregunta 8', type:'topics',
+    id:'p9b', label:'Pregunta 11', type:'multi',
+    text:'¿Cuáles son las principales barreras que frenan la innovación en tu hospital?',
+    sub:'Selecciona hasta 3 que consideres más relevantes.',
+    items:[
+      {text:'Falta de financiación o presupuesto específico.', scores:[0,0,0,0,0]},
+      {text:'Cultura organizativa resistente al cambio.', scores:[0,0,0,0,0]},
+      {text:'Marco regulatorio y burocracia institucional.', scores:[0,0,0,0,0]},
+      {text:'Falta de liderazgo o apoyo de la dirección.', scores:[0,0,0,0,0]},
+      {text:'Escasez de talento especializado en innovación.', scores:[0,0,0,0,0]},
+      {text:'Dificultad para escalar los pilotos a la práctica clínica real.', scores:[0,0,0,0,0]},
+      {text:'Desconexión entre la innovación y las necesidades clínicas reales.', scores:[0,0,0,0,0]},
+    ]
+  },
+  // ── BLOQUE 8: TEMÁTICAS ───────────────────────────────────────────────────
+  {
+    id:'p10', label:'Pregunta 12', type:'topics',
     text:'¿Qué temáticas te interesan para los grupos de trabajo?',
     sub:'Selecciona entre 1 y 3 opciones por orden de prioridad.'
   }
@@ -514,15 +627,54 @@ function updateProgress() {
 
 // ─── RENDER ───────────────────────────────────────────────────────────────
 function renderCurrent() {
-  buildFlow(); // recalculate in case prev answers changed conditionals
-  // ensure currentFlowIdx is in bounds
+  buildFlow();
   if (currentFlowIdx >= visibleFlow.length) { submitSurvey(); return; }
   const qId = visibleFlow[currentFlowIdx];
   const q = getQ(qId);
   updateProgress();
-  if (q.type === 'topics') { renderTopics(q); return; }
-  if (q.type === 'multi')  { renderMulti(q); return; }
+  if (q.type === 'topics')  { renderTopics(q); return; }
+  if (q.type === 'multi')   { renderMulti(q); return; }
+  if (q.type === 'double')  { renderDouble(q); return; }
   renderSingle(q);
+}
+
+function renderDouble(q) {
+  const letters = ['A','B','C','D','E'];
+  const isLast = currentFlowIdx === visibleFlow.length - 1;
+  // both sub-questions must be answered to enable next
+  const allAnswered = q.questions.every(sq => answers[sq.id] !== undefined);
+
+  document.getElementById('q-area').innerHTML = `
+    <div class="card">
+      <div class="q-number">${q.label}</div>
+      ${q.questions.map((sq, qi) => {
+        const cur = answers[sq.id];
+        return `
+        <div style="margin-bottom:${qi < q.questions.length-1 ? '28px' : '0'}">
+          <div class="q-text" style="font-size:clamp(15px,2.5vw,19px);margin-bottom:16px;">${sq.text}</div>
+          <div class="options">
+            ${sq.options.map((o,i) => `
+              <div class="option ${cur===i?'selected':''}" onclick="selectDouble('${q.id}','${sq.id}',${i})">
+                <div class="opt-letter">${letters[i]}</div>
+                <div class="opt-text">${o.text}</div>
+              </div>`).join('')}
+          </div>
+        </div>
+        ${qi < q.questions.length-1 ? '<div style="height:1px;background:var(--border);margin:24px 0"></div>' : ''}`;
+      }).join('')}
+      <div class="btn-row">
+        <button class="btn btn-ghost" onclick="prevQ()">← Atrás</button>
+        <button class="btn btn-primary" id="btn-next" onclick="nextQ()" ${allAnswered?'':'disabled'}>
+          ${isLast ? 'Ver mi arquetipo →' : 'Siguiente →'}
+        </button>
+      </div>
+    </div>`;
+}
+
+function selectDouble(groupId, subId, i) {
+  answers[subId] = i;
+  // re-render to update selection state and button
+  renderDouble(getQ(groupId));
 }
 
 function renderSingle(q) {
@@ -651,17 +803,20 @@ function prevQ() {
 // ─── SCORING ──────────────────────────────────────────────────────────────
 function computeScores() {
   const totals = [0,0,0,0,0];
-
   QUESTIONS.forEach(q => {
     if (q.type === 'topics') return;
     if (q.showIf && !q.showIf(answers)) return;
     if (q.type === 'single') {
       const sel = answers[q.id];
       if (sel !== undefined) q.options[sel].scores.forEach((v,j) => totals[j] += v);
+    } else if (q.type === 'double') {
+      q.questions.forEach(sq => {
+        const sel = answers[sq.id];
+        if (sel !== undefined) sq.options[sel].scores.forEach((v,j) => totals[j] += v);
+      });
     } else if (q.type === 'multi') {
       const sel = answers[q.id] || [];
       if (sel.length === 0) return;
-      // sum selected scores, normalize by number selected to avoid multi penalizing
       const raw = [0,0,0,0,0];
       sel.forEach(i => q.items[i].scores.forEach((v,j) => raw[j] += v));
       const factor = 1 / sel.length;
@@ -674,28 +829,40 @@ function computeScores() {
 // ─── SUBMIT ───────────────────────────────────────────────────────────────
 function submitSurvey() {
   const scores = computeScores();
-  const maxIdx = scores.indexOf(Math.max(...scores));
+  // Primary archetype
+  const maxVal = Math.max(...scores);
+  const maxIdx = scores.indexOf(maxVal);
+  // Secondary archetype — MEJORA 2
+  const scoresWithIdx = scores.map((v,i) => ({v,i}));
+  const sorted = [...scoresWithIdx].sort((a,b) => b.v - a.v);
+  const secondaryIdx = sorted[1] && sorted[1].v > 0 && sorted[1].i !== maxIdx ? sorted[1].i : null;
   const arch = ARCHETYPES[maxIdx];
+  const secondaryArch = secondaryIdx !== null ? ARCHETYPES[secondaryIdx] : null;
   const fecha = new Date().toLocaleString('es-ES');
   const topicsStr = topicPriorities.map((i,r) => `${r+1}º: ${TOPICS[i]}`).join(' | ');
 
-  // Build flat payload for Sheets
   const payload = {
-    fecha, hospital: userData.hospital, archetype: arch.name,
-    p1: answers.p1!==undefined ? ['A','B','C','D'][answers.p1] : '-',
-    p1b: answers.p1b!==undefined ? ['A','B','C','D'][answers.p1b] : '-',
-    p1c: answers.p1c!==undefined ? ['A','B','C'][answers.p1c] : '-',
-    p1d: answers.p1d ? answers.p1d.map(i=>'ABCDEF'[i]).join('+') : '-',
-    p2: answers.p2!==undefined ? ['A','B','C','D'][answers.p2] : '-',
-    p3: answers.p3!==undefined ? ['A','B','C'][answers.p3] : '-',
-    p3b: answers.p3b ? answers.p3b.map(i=>'ABCDE'[i]).join('+') : '-',
-    p4: answers.p4!==undefined ? ['A','B','C','D'][answers.p4] : '-',
-    p4b: answers.p4b!==undefined ? ['A','B','C','D'][answers.p4b] : '-',
-    p4c: answers.p4c!==undefined ? ['A','B','C','D'][answers.p4c] : '-',
-    p5: answers.p5!==undefined ? ['A','B','C','D'][answers.p5] : '-',
-    p6: answers.p6 ? answers.p6.map(i=>'ABCDE'[i]).join('+') : '-',
-    p6b: answers.p6b!==undefined ? ['A','B','C','D'][answers.p6b] : '-',
-    p7: answers.p7!==undefined ? ['A','B','C','D'][answers.p7] : '-',
+    fecha, hospital: userData.hospital,
+    archetype: arch.name,
+    archetype2: secondaryArch ? secondaryArch.name : '-',
+    p1:   answers.p1  !== undefined ? ['A','B','C','D'][answers.p1]  : '-',
+    p1b:  answers.p1b !== undefined ? ['A','B','C','D'][answers.p1b] : '-',
+    p1c:  answers.p1c !== undefined ? ['A','B','C'][answers.p1c]     : '-',
+    p1d:  answers.p1d ? answers.p1d.map(i=>'ABCDEF'[i]).join('+')   : '-',
+    p1f:  answers.p1f !== undefined ? ['A','B','C','D'][answers.p1f] : '-',
+    p1g:  answers.p1g !== undefined ? ['A','B','C','D'][answers.p1g] : '-',
+    p3:   answers.p3  !== undefined ? ['A','B','C','D','E'][answers.p3] : '-',
+    p4:   answers.p4  !== undefined ? ['A','B','C'][answers.p4]      : '-',
+    p4b:  answers.p4b ? answers.p4b.map(i=>'ABCDE'[i]).join('+')    : '-',
+    p5:   answers.p5  !== undefined ? ['A','B','C','D'][answers.p5]  : '-',
+    p5b:  answers.p5b !== undefined ? ['A','B','C','D'][answers.p5b] : '-',
+    p6:   answers.p6  !== undefined ? ['A','B','C','D'][answers.p6]  : '-',
+    p7:   answers.p7  !== undefined ? ['A','B','C','D'][answers.p7]  : '-',
+    p7b:  answers.p7b !== undefined ? ['A','B','C','D'][answers.p7b] : '-',
+    p8:   answers.p8  ? answers.p8.map(i=>'ABCDE'[i]).join('+')     : '-',
+    p8b:  answers.p8b !== undefined ? ['A','B','C','D'][answers.p8b] : '-',
+    p9:   answers.p9  !== undefined ? ['A','B','C','D'][answers.p9]  : '-',
+    p9b:  answers.p9b ? answers.p9b.map(i=>'ABCDEFG'[i]).join('+')  : '-',
     tematicas: topicsStr
   };
 
@@ -705,19 +872,51 @@ function submitSurvey() {
     body: JSON.stringify(payload)
   }).catch(()=>{});
 
-  showResult(arch);
+  showResult(arch, scores, secondaryArch);
 }
 
 // ─── RESULT ───────────────────────────────────────────────────────────────
-function showResult(arch) {
+function showResult(arch, scores, secondaryArch) {
   document.getElementById('survey-screen').style.display = 'none';
   document.getElementById('progress-wrap').style.display = 'none';
   document.getElementById('result-screen').style.display = 'block';
   document.getElementById('res-title').textContent = arch.name;
   document.getElementById('res-subtitle').textContent = arch.tagline;
   document.getElementById('res-desc').textContent = arch.desc;
-  document.getElementById('res-pills').innerHTML = arch.tags.map(t=>`<span class="pill ${t.type}">${t.label}</span>`).join('');
-  document.getElementById('res-dims').innerHTML = arch.dims.map(d=>`<div class="dim-box"><div class="dim-label">${d.label}</div><div class="dim-val ${d.cls}">${d.value}</div></div>`).join('');
+
+  // pills
+  const pillsHTML = arch.tags.map(t=>`<span class="pill ${t.type}">${t.label}</span>`).join('');
+  document.getElementById('res-pills').innerHTML = pillsHTML;
+
+  document.getElementById('res-dims').innerHTML = arch.dims.map(d=>
+    `<div class="dim-box"><div class="dim-label">${d.label}</div><div class="dim-val ${d.cls}">${d.value}</div></div>`
+  ).join('');
+
+  // Gap de madurez — MEJORA 1
+  const hoy = answers.p7;
+  const futuro = answers.p7b;
+  const gapLabels = ['Marginal','Línea secundaria','Prioridad estratégica','Elemento central'];
+  const aspiraLabels = ['Mantener nivel actual','Ganar relevancia interna','Ser referente nacional','Liderar el ecosistema'];
+  if (hoy !== undefined && futuro !== undefined) {
+    const gap = futuro - hoy;
+    document.getElementById('res-gap').style.display = 'block';
+    document.getElementById('gap-hoy').textContent = gapLabels[hoy];
+    document.getElementById('gap-futuro').textContent = aspiraLabels[futuro];
+    document.getElementById('gap-desc').textContent = gap <= 0
+      ? 'Vuestro punto de partida y vuestra aspiración están alineados. El reto es consolidar y no perder terreno.'
+      : gap === 1
+      ? 'Un salto realista. Con los recursos y el mandato adecuados, alcanzable en el horizonte definido.'
+      : 'Una transformación ambiciosa. Requerirá cambios estructurales, culturales y de liderazgo significativos.';
+  }
+
+  // Arquetipo secundario — MEJORA 2
+  if (secondaryArch) {
+    document.getElementById('res-secondary').style.display = 'block';
+    document.getElementById('res-secondary-name').textContent = secondaryArch.name;
+    document.getElementById('res-secondary-desc').textContent = secondaryArch.tagline.replace(/"/g,'');
+  }
+
+  // Topics
   if (topicPriorities.length > 0) {
     document.getElementById('res-priorities').style.display = 'block';
     document.getElementById('res-priority-list').innerHTML = topicPriorities.map((i,r)=>`
