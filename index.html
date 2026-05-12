@@ -403,7 +403,7 @@ const QUESTIONS = [
   // ── BLOQUE 2: CULTURA (siempre visibles, renumeradas) ────────────────────
   // P2 — cultura + identidad en una sola página (siempre)
   {
-    id:'p1f', label:'Pregunta 2', type:'single',
+    id:'p2', label:'Pregunta 2', type:'single',
     text:'¿Qué acciones tiene el hospital para difundir la cultura de innovación internamente?',
     options:[
           {text:'No hay iniciativas específicas para fomentar una cultura innovadora.', scores:[0,0,0,0,4]},
@@ -834,7 +834,7 @@ function submitSurvey() {
     p1b:  answers.p1b !== undefined ? ['A','B','C','D'][answers.p1b] : '-',
     p1c:  answers.p1c !== undefined ? ['A','B','C'][answers.p1c]     : '-',
     p1d:  answers.p1d ? answers.p1d.map(i=>'ABCDEF'[i]).join('+')   : '-',
-    p1f:  answers.p1f !== undefined ? ['A','B','C','D'][answers.p1f] : '-',
+    p2:  answers.p2 !== undefined ? ['A','B','C','D'][answers.p2] : '-',
     //p1g:  answers.p1g !== undefined ? ['A','B','C','D'][answers.p1g] : '-',
     p3:   answers.p3  !== undefined ? ['A','B','C','D','E'][answers.p3] : '-',
     p4:   answers.p4  !== undefined ? ['A','B','C'][answers.p4]      : '-',
